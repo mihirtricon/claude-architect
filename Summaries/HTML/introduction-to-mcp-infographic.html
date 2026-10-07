@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to Model Context Protocol - Infographic</title>
+<style>
+  :root { --bg:#faf9f5; --ink:#1f1e1d; --muted:#6b6a68; --line:#e6e3dc;
+          --d1:#c96442; --d2:#3b82a0; --d3:#7a5ea8; --d4:#2f7d4f; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#ece9e0; font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); }
+  .poster { max-width:900px; margin:1.5rem auto; background:var(--bg); border-radius:16px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,.12); }
+  .hero { background:var(--ink); color:#fff; padding:2.5rem 2rem; text-align:center; }
+  .hero small { letter-spacing:.15em; text-transform:uppercase; color:#e9b7a3; font-weight:700; }
+  .hero h1 { margin:.4rem 0; font-size:2.2rem; line-height:1.15; }
+  .hero p { margin:0 auto; max-width:620px; color:#d6d3cc; }
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); }
+  .stat { background:#fff; padding:1rem .5rem; text-align:center; }
+  .stat b { display:block; font-size:1.8rem; color:var(--d1); }
+  .stat span { font-size:.8rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+  .block { padding:2rem; }
+  .block h2 { margin:0 0 1rem; font-size:1.3rem; text-align:center; }
+  .block h2::after { content:""; display:block; width:50px; height:3px; background:var(--d1); margin:.4rem auto 0; }
+  .alt { background:#f3f1ea; }
+
+  .grid2 { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
+  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+  .card { background:#fff; border:1px solid var(--line); border-top:5px solid var(--c,var(--d1)); border-radius:12px; padding:.9rem 1.1rem; }
+  .card h3 { margin:0 0 .3rem; font-size:1rem; color:var(--c,var(--d1)); }
+  .card p, .card li { font-size:.9rem; margin:0; }
+  .card ul { margin:.3rem 0 0; padding-left:1.1rem; }
+  .card .n { font-size:.72rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .card .les { display:inline-block; margin-top:.5rem; background:#f3e3dc; color:var(--c,var(--d1)); font-weight:700; font-size:.78rem; border-radius:999px; padding:.05rem .6rem; }
+  .card .who { display:block; margin-top:.5rem; font-size:.8rem; font-weight:700; color:var(--muted); }
+  .obj { background:#fff; border-left:5px solid var(--d4); border-radius:8px; padding:.65rem 1rem; font-size:.92rem; }
+  .objs { display:grid; grid-template-columns:1fr 1fr; gap:.7rem; }
+
+  .arch { display:flex; align-items:stretch; justify-content:center; gap:.6rem; flex-wrap:wrap; }
+  .node { background:#fff; border:2px solid var(--c); border-radius:12px; padding:.8rem 1rem; text-align:center; min-width:150px; }
+  .node b { display:block; color:var(--c); }
+  .node span { font-size:.8rem; color:var(--muted); }
+  .link { align-self:center; font-size:1.4rem; color:var(--muted); }
+  .note { text-align:center; color:var(--muted); font-size:.88rem; margin-top:.6rem; }
+
+  .cta { background:var(--d1); color:#fff; text-align:center; padding:1.5rem; }
+  .cta a { color:#fff; font-weight:700; }
+  .foot { text-align:center; font-size:.78rem; color:var(--muted); padding:1rem; }
+
+  @media (max-width:640px) {
+    .stats { grid-template-columns:repeat(2,1fr); }
+    .grid2, .grid3, .objs { grid-template-columns:1fr; }
+    .hero h1 { font-size:1.7rem; }
+  }
+  @media print { body { background:#fff; } .poster { box-shadow:none; margin:0; } }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="hero">
+    <small>Anthropic Academy - Free Course</small>
+    <h1>Introduction to Model Context Protocol</h1>
+    <p>Build modular AI applications with MCP to connect Claude to external tools and data sources, using Python.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>16</b><span>Lectures</span></div>
+    <div class="stat"><b>1h</b><span>Video</span></div>
+    <div class="stat"><b>1</b><span>Quiz</span></div>
+    <div class="stat"><b>Free</b><span>Certificate</span></div>
+  </div>
+
+  <div class="block">
+    <h2>MCP Architecture</h2>
+    <div class="arch">
+      <div class="node" style="--c:var(--d2)"><b>Your app</b><span>hosts the MCP client</span></div>
+      <div class="link">&#8644;</div>
+      <div class="node" style="--c:var(--d3)"><b>MCP server</b><span>tools, resources, prompts</span></div>
+      <div class="link">&#8644;</div>
+      <div class="node" style="--c:var(--d4)"><b>External service</b><span>APIs, files, data</span></div>
+    </div>
+    <div class="note">MCP connects Claude to services without hand-writing tool schemas for each one.</div>
+  </div>
+
+  <div class="block alt">
+    <h2>Three Core Primitives</h2>
+    <div class="grid3">
+      <div class="card" style="--c:var(--d1)"><h3>Tools</h3><p>Actions Claude can call.</p><span class="who">Controlled by: the model</span></div>
+      <div class="card" style="--c:var(--d2)"><h3>Resources</h3><p>Data exposed for direct access.</p><span class="who">Controlled by: the application</span></div>
+      <div class="card" style="--c:var(--d3)"><h3>Prompts</h3><p>Pre-defined workflow instructions.</p><span class="who">Controlled by: the user</span></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Course Path: 16 Lessons in 2 Sections</h2>
+    <div class="grid2">
+      <div class="card" style="--c:var(--d1)"><div class="n">Section 1</div><h3>MCP fundamentals &amp; server development</h3>
+        <ul><li>Why MCP exists and its architecture</li><li>Build a server with tools (Python SDK)</li><li>Test with the MCP Inspector</li></ul><span class="les">8 lessons</span></div>
+      <div class="card" style="--c:var(--d2)"><div class="n">Section 2</div><h3>Client implementation &amp; advanced features</h3>
+        <ul><li>Build the client and manage sessions</li><li>Resources and prompts</li><li>Complete application flow</li></ul><span class="les">8 lessons</span></div>
+    </div>
+    <div class="note">Hands-on project: a document management system built with MCP.</div>
+  </div>
+
+  <div class="block alt">
+    <h2>What You Will Be Able To Do</h2>
+    <div class="objs">
+      <div class="obj">Understand MCP architecture and client-server communication</div>
+      <div class="obj">Build MCP servers that expose tools with the Python SDK</div>
+      <div class="obj">Implement MCP clients that connect your apps to servers</div>
+      <div class="obj">Create resources for data and prompts for workflows</div>
+      <div class="obj">Test and debug servers with the MCP Inspector</div>
+      <div class="obj">Choose between tools, resources, and prompts by control pattern</div>
+      <div class="obj">Handle resource cleanup and async communication</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Before You Start</h2>
+    <div class="grid2">
+      <div class="card"><h3>Prerequisites</h3><ul><li>Basic Python programming</li><li>Understanding of async/await</li><li>Familiarity with API concepts</li></ul></div>
+      <div class="card" style="--c:var(--d4)"><h3>Who it is for</h3><p>Engineers integrating Claude with external tools and services without writing lots of boilerplate integration code.</p></div>
+    </div>
+  </div>
+
+  <div class="cta">
+    Enroll for free:
+    <a href="https://anthropic-partners.skilljar.com/introduction-to-model-context-protocol" target="_blank" rel="noopener">anthropic-partners.skilljar.com/introduction-to-model-context-protocol</a>
+  </div>
+  <div class="foot">Unofficial study infographic. Course facts from the Skilljar course page; architecture diagram is a condensed summary.</div>
+</div>
+</body>
+</html>

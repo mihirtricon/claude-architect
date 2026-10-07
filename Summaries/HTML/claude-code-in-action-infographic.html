@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code in Action - Infographic</title>
+<style>
+  :root { --bg:#faf9f5; --ink:#1f1e1d; --muted:#6b6a68; --line:#e6e3dc;
+          --d1:#c96442; --d2:#3b82a0; --d3:#7a5ea8; --d4:#2f7d4f; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#ece9e0; font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); }
+  .poster { max-width:900px; margin:1.5rem auto; background:var(--bg); border-radius:16px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,.12); }
+  .hero { background:var(--ink); color:#fff; padding:2.5rem 2rem; text-align:center; }
+  .hero small { letter-spacing:.15em; text-transform:uppercase; color:#e9b7a3; font-weight:700; }
+  .hero h1 { margin:.4rem 0; font-size:2.2rem; line-height:1.15; }
+  .hero p { margin:0 auto; max-width:620px; color:#d6d3cc; }
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); }
+  .stat { background:#fff; padding:1rem .5rem; text-align:center; }
+  .stat b { display:block; font-size:1.8rem; color:var(--d1); }
+  .stat span { font-size:.8rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+  .block { padding:2rem; }
+  .block h2 { margin:0 0 1rem; font-size:1.3rem; text-align:center; }
+  .block h2::after { content:""; display:block; width:50px; height:3px; background:var(--d1); margin:.4rem auto 0; }
+  .alt { background:#f3f1ea; }
+
+  .grid2 { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
+  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+  .grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:.8rem; }
+  .card { background:#fff; border:1px solid var(--line); border-top:5px solid var(--c,var(--d1)); border-radius:12px; padding:.9rem 1.1rem; }
+  .card h3 { margin:0 0 .3rem; font-size:1rem; color:var(--c,var(--d1)); }
+  .card p, .card li { font-size:.9rem; margin:0; }
+  .card ul { margin:.3rem 0 0; padding-left:1.1rem; }
+  .card .n { font-size:.72rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .card .les { display:inline-block; margin-top:.5rem; background:#f3e3dc; color:var(--c,var(--d1)); font-weight:700; font-size:.78rem; border-radius:999px; padding:.05rem .6rem; }
+  .obj { background:#fff; border-left:5px solid var(--d4); border-radius:8px; padding:.65rem 1rem; font-size:.92rem; }
+  .objs { display:grid; grid-template-columns:1fr 1fr; gap:.7rem; }
+  code { background:#f1efe8; padding:.05rem .35rem; border-radius:4px; font-size:.88em; }
+
+  .flow { display:flex; align-items:center; justify-content:center; gap:.5rem; flex-wrap:wrap; }
+  .pill { padding:.45rem 1rem; border-radius:999px; color:#fff; font-weight:700; font-size:.9rem; background:var(--c,var(--d1)); }
+  .arrow { font-size:1.3rem; color:var(--muted); }
+  .note { text-align:center; color:var(--muted); font-size:.88rem; margin-top:.6rem; }
+
+  .spectrum { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-radius:12px; overflow:hidden; border:1px solid var(--line); }
+  .spectrum div { padding:.8rem 1rem; color:#fff; font-size:.88rem; }
+  .spectrum b { display:block; }
+
+  .cta { background:var(--d1); color:#fff; text-align:center; padding:1.5rem; }
+  .cta a { color:#fff; font-weight:700; }
+  .foot { text-align:center; font-size:.78rem; color:var(--muted); padding:1rem; }
+
+  @media (max-width:640px) {
+    .stats { grid-template-columns:repeat(2,1fr); }
+    .grid2, .grid3, .grid4, .objs, .spectrum { grid-template-columns:1fr; }
+    .hero h1 { font-size:1.7rem; }
+  }
+  @media print { body { background:#fff; } .poster { box-shadow:none; margin:0; } }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="hero">
+    <small>Anthropic Academy - Free Course</small>
+    <h1>Claude Code in Action</h1>
+    <p>Run long, hands-off Claude Code sessions you can trust: steer, configure, automate, and verify.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>9</b><span>Lectures</span></div>
+    <div class="stat"><b>4</b><span>Sections</span></div>
+    <div class="stat"><b>Free</b><span>Cost</span></div>
+    <div class="stat"><b>Yes</b><span>Certificate</span></div>
+  </div>
+
+  <div class="block">
+    <h2>Steer - Configure - Automate - Verify</h2>
+    <div class="grid4">
+      <div class="card" style="--c:var(--d1)"><div class="n">Section 1</div><h3>Steer the Work</h3><p>Keep Claude on track across a long session.</p><span class="les">1 lesson</span></div>
+      <div class="card" style="--c:var(--d2)"><div class="n">Section 2</div><h3>Configure Claude</h3><p>Set up the three instruction surfaces.</p><span class="les">4 lessons</span></div>
+      <div class="card" style="--c:var(--d3)"><div class="n">Section 3</div><h3>Automate Repeat Work</h3><p>Routines, headless runs, PR integration.</p><span class="les">2 lessons</span></div>
+      <div class="card" style="--c:var(--d4)"><div class="n">Section 4</div><h3>Verify and Share</h3><p>Make hands-off work safe and portable.</p><span class="les">2 lessons</span></div>
+    </div>
+  </div>
+
+  <div class="block alt">
+    <h2>What You Will Be Able To Do</h2>
+    <div class="objs">
+      <div class="obj">Scope work with plan mode, direct compaction, and course-correct with the rewind menu</div>
+      <div class="obj">Run autonomous sessions with <code>goal</code> and <code>loop</code>; run parallel agents safely with worktrees</div>
+      <div class="obj">Write a lean <code>CLAUDE.md</code> Claude follows, with each rule on the right instruction surface</div>
+      <div class="obj">Package repeated procedures as skills, starting with a verification skill</div>
+      <div class="obj">Match the right permission mode to each job</div>
+      <div class="obj">Enforce unskippable rules with hooks using permission-decision JSON and exit codes</div>
+      <div class="obj">Schedule routines, run headless jobs with structured output, wire Claude into PRs</div>
+      <div class="obj">Verify unsupervised runs in proportion to how little you watched; share a setup as a plugin</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Permission Modes: Match the Mode to the Job</h2>
+    <div class="spectrum">
+      <div style="background:var(--d2)"><b>Hands-on review</b>You approve actions as they happen.</div>
+      <div style="background:var(--d3)"><b>Guided autonomy</b>Claude acts within rules you set.</div>
+      <div style="background:var(--d1)"><b>Unattended pipelines</b>Runs without you; hooks and tests guard it.</div>
+    </div>
+    <div class="note">The more you let Claude run alone, the more you verify afterwards.</div>
+  </div>
+
+  <div class="block alt">
+    <h2>Where Rules Live</h2>
+    <div class="grid3">
+      <div class="card" style="--c:var(--d1)"><h3>CLAUDE.md</h3><p>Lean guidance Claude should follow. Keep it short.</p></div>
+      <div class="card" style="--c:var(--d2)"><h3>Skills</h3><p>Packaged, repeatable procedures, including a verification skill.</p></div>
+      <div class="card" style="--c:var(--d3)"><h3>Hooks</h3><p>Deterministic, unskippable rules enforced in code.</p></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Hands-Off Workflow</h2>
+    <div class="flow">
+      <span class="pill" style="--c:var(--d2)">Plan mode</span><span class="arrow">&#8594;</span>
+      <span class="pill" style="--c:var(--d3)">Goal / loop run</span><span class="arrow">&#8594;</span>
+      <span class="pill" style="--c:var(--d4)">Test-gated hooks</span><span class="arrow">&#8594;</span>
+      <span class="pill" style="--c:var(--d1)">Verify and share</span>
+    </div>
+  </div>
+
+  <div class="block alt">
+    <h2>Before You Start</h2>
+    <div class="grid2">
+      <div class="card"><h3>Prerequisites</h3><ul><li>You already use Claude Code for single prompts</li><li>Basic Git and command-line familiarity</li></ul></div>
+      <div class="card" style="--c:var(--d4)"><h3>Who it is for</h3><p>Developers moving from single prompts to longer, less supervised, team-wide workflows.</p></div>
+    </div>
+  </div>
+
+  <div class="cta">
+    Enroll for free:
+    <a href="https://anthropic-partners.skilljar.com/claude-code-in-action" target="_blank" rel="noopener">anthropic-partners.skilljar.com/claude-code-in-action</a>
+  </div>
+  <div class="foot">Unofficial study infographic. Course facts from the Skilljar course page; spectrum and rules cards are condensed summaries.</div>
+</div>
+</body>
+</html>

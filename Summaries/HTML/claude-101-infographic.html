@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude 101 - Infographic</title>
+<style>
+  :root { --bg:#faf9f5; --ink:#1f1e1d; --muted:#6b6a68; --line:#e6e3dc;
+          --d1:#c96442; --d2:#3b82a0; --d3:#7a5ea8; --d4:#2f7d4f; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#ece9e0; font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); }
+  .poster { max-width:900px; margin:1.5rem auto; background:var(--bg); border-radius:16px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,.12); }
+  .hero { background:var(--ink); color:#fff; padding:2.5rem 2rem; text-align:center; }
+  .hero small { letter-spacing:.15em; text-transform:uppercase; color:#e9b7a3; font-weight:700; }
+  .hero h1 { margin:.4rem 0; font-size:2.2rem; line-height:1.15; }
+  .hero p { margin:0 auto; max-width:620px; color:#d6d3cc; }
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); }
+  .stat { background:#fff; padding:1rem .5rem; text-align:center; }
+  .stat b { display:block; font-size:1.8rem; color:var(--d1); }
+  .stat span { font-size:.8rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+  .block { padding:2rem; }
+  .block h2 { margin:0 0 1rem; font-size:1.3rem; text-align:center; }
+  .block h2::after { content:""; display:block; width:50px; height:3px; background:var(--d1); margin:.4rem auto 0; }
+  .alt { background:#f3f1ea; }
+
+  .grid2 { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
+  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+  .card { background:#fff; border:1px solid var(--line); border-top:5px solid var(--c,var(--d1)); border-radius:12px; padding:.9rem 1.1rem; }
+  .card h3 { margin:0 0 .3rem; font-size:1rem; color:var(--c,var(--d1)); }
+  .card p, .card li { font-size:.9rem; margin:0; }
+  .card ul { margin:.3rem 0 0; padding-left:1.1rem; }
+  .card .n { font-size:.72rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+
+  .flow { display:flex; align-items:center; justify-content:center; gap:.5rem; flex-wrap:wrap; }
+  .pill { padding:.45rem 1rem; border-radius:999px; color:#fff; font-weight:700; font-size:.9rem; background:var(--c,var(--d1)); }
+  .arrow { font-size:1.3rem; color:var(--muted); }
+  .note { text-align:center; color:var(--muted); font-size:.88rem; margin-top:.6rem; }
+
+  .cta { background:var(--d1); color:#fff; text-align:center; padding:1.5rem; }
+  .cta a { color:#fff; font-weight:700; }
+  .foot { text-align:center; font-size:.78rem; color:var(--muted); padding:1rem; }
+
+  @media (max-width:640px) {
+    .stats { grid-template-columns:repeat(2,1fr); }
+    .grid2, .grid3 { grid-template-columns:1fr; }
+    .hero h1 { font-size:1.7rem; }
+  }
+  @media print { body { background:#fff; } .poster { box-shadow:none; margin:0; } }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="hero">
+    <small>Anthropic Academy - Free Course</small>
+    <h1>Claude 101</h1>
+    <p>Learn how to use Claude for everyday work tasks, understand core features, and explore resources for more advanced learning.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>5</b><span>Sections</span></div>
+    <div class="stat"><b>12</b><span>Core Topics</span></div>
+    <div class="stat"><b>Free</b><span>Cost</span></div>
+    <div class="stat"><b>Yes</b><span>Certificate</span></div>
+  </div>
+
+  <div class="block">
+    <h2>Curriculum</h2>
+    <div class="grid2">
+      <div class="card" style="--c:var(--d1)"><div class="n">Section 1</div><h3>Meet Claude</h3>
+        <ul><li>What is Claude?</li><li>Your first conversation with Claude</li><li>Getting better results</li><li>How you'll work with Claude on your desktop</li></ul></div>
+      <div class="card" style="--c:var(--d2)"><div class="n">Section 2</div><h3>Organizing your work and knowledge</h3>
+        <ul><li>Introduction to projects</li><li>Creating with artifacts</li><li>Working with skills</li></ul></div>
+      <div class="card" style="--c:var(--d3)"><div class="n">Section 3</div><h3>Expanding Claude's reach</h3>
+        <ul><li>Connecting your tools</li><li>Enterprise search</li><li>Research for deep dives</li></ul></div>
+      <div class="card" style="--c:var(--d4)"><div class="n">Section 4</div><h3>Putting it all together</h3>
+        <ul><li>Claude in action: use-cases by role</li><li>Other ways to work with Claude</li></ul></div>
+    </div>
+    <div class="grid2" style="margin-top:1rem">
+      <div class="card" style="--c:var(--d1)"><div class="n">Section 5</div><h3>Conclusion &amp; certificate</h3><ul><li>What's next?</li><li>Certificate of completion</li></ul></div>
+      <div class="card" style="--c:var(--d4)"><h3>Learning journey</h3><p>Basics, then organization, then integrations, then real-world use.</p></div>
+    </div>
+  </div>
+
+  <div class="block alt">
+    <h2>Your Path With Claude</h2>
+    <div class="flow">
+      <span class="pill" style="--c:var(--d1)">Chat</span><span class="arrow">&#8594;</span>
+      <span class="pill" style="--c:var(--d2)">Projects &amp; artifacts</span><span class="arrow">&#8594;</span>
+      <span class="pill" style="--c:var(--d3)">Skills &amp; connectors</span><span class="arrow">&#8594;</span>
+      <span class="pill" style="--c:var(--d4)">Research &amp; role use-cases</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Key Ideas</h2>
+    <div class="grid3">
+      <div class="card" style="--c:var(--d1)"><h3>Projects</h3><p>Keep related files and context together for ongoing work.</p></div>
+      <div class="card" style="--c:var(--d2)"><h3>Artifacts</h3><p>Create standalone documents, code, and apps next to the chat.</p></div>
+      <div class="card" style="--c:var(--d3)"><h3>Skills</h3><p>Reusable instructions for repeatable tasks.</p></div>
+      <div class="card" style="--c:var(--d4)"><h3>Connectors</h3><p>Link Claude to your tools and data.</p></div>
+      <div class="card" style="--c:var(--d1)"><h3>Enterprise search</h3><p>Find answers across company knowledge.</p></div>
+      <div class="card" style="--c:var(--d2)"><h3>Research</h3><p>Deep-dive investigations on a topic.</p></div>
+    </div>
+  </div>
+
+  <div class="cta">
+    Register for free:
+    <a href="https://anthropic-partners.skilljar.com/claude-101" target="_blank" rel="noopener">anthropic-partners.skilljar.com/claude-101</a>
+  </div>
+  <div class="foot">Unofficial study infographic. Curriculum from the Skilljar course page; key-idea blurbs are condensed summaries.</div>
+</div>
+</body>
+</html>
