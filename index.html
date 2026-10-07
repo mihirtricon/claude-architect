@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Certified Architect - Foundations: Study Guide</title>
+<style>
+  :root { --bg:#faf9f5; --card:#fff; --ink:#1f1e1d; --muted:#6b6a68; --accent:#c96442; --line:#e6e3dc; --ok:#2f7d4f; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; background:var(--bg); color:var(--ink); }
+  header { padding:2rem 1.5rem; background:var(--ink); color:#fff; }
+  header h1 { margin:0 0 .25rem; font-size:1.7rem; }
+  header p { margin:0; color:#d6d3cc; }
+  nav { position:sticky; top:0; z-index:5; background:var(--card); border-bottom:1px solid var(--line); padding:.6rem 1.5rem; display:flex; flex-wrap:wrap; gap:1rem; }
+  nav a { color:var(--accent); text-decoration:none; font-weight:600; font-size:.9rem; }
+  main { max-width:960px; margin:0 auto; padding:1.5rem; }
+  section { margin-bottom:2.5rem; }
+  h2 { border-bottom:2px solid var(--accent); padding-bottom:.3rem; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:1rem 1.25rem; margin:1rem 0; }
+  .card h3 { margin:.2rem 0 .5rem; }
+  .tag { display:inline-block; background:#f3e3dc; color:var(--accent); border-radius:999px; padding:.05rem .6rem; font-size:.8rem; font-weight:700; }
+  table { width:100%; border-collapse:collapse; background:var(--card); }
+  th, td { border:1px solid var(--line); padding:.5rem .7rem; text-align:left; vertical-align:top; }
+  th { background:#f3f1ea; }
+  ul.check { list-style:none; padding-left:0; }
+  ul.check li { padding:.25rem 0; }
+  ul.check input { margin-right:.55rem; transform:scale(1.15); }
+  ul.check input:checked + span { color:var(--muted); text-decoration:line-through; }
+  .bar { height:10px; background:var(--line); border-radius:6px; overflow:hidden; }
+  .bar > div { height:100%; width:0; background:var(--ok); transition:width .3s; }
+  .note { background:#fff6e5; border-left:4px solid #e0a100; padding:.6rem 1rem; border-radius:4px; }
+  details { border:1px solid var(--line); background:var(--card); border-radius:8px; padding:.6rem 1rem; margin:.5rem 0; }
+  summary { cursor:pointer; font-weight:600; }
+  code { background:#f1efe8; padding:.05rem .35rem; border-radius:4px; font-size:.9em; }
+  .quizbtn { margin:.3rem .3rem 0 0; padding:.4rem .8rem; border:1px solid var(--line); background:#fff; border-radius:6px; cursor:pointer; text-align:left; }
+  .quizbtn.right { background:#e3f4e9; border-color:var(--ok); }
+  .quizbtn.wrong { background:#fbe4e0; border-color:#c0392b; }
+  .fb { margin-top:.4rem; font-size:.9rem; color:var(--muted); }
+  button.reset { padding:.4rem .9rem; border:1px solid var(--line); background:#fff; border-radius:6px; cursor:pointer; }
+  .meta { color:var(--muted); font-size:.85rem; margin:0 0 .5rem; }
+  .sum h4 { margin:.9rem 0 .2rem; font-size:.95rem; color:var(--accent); }
+  .sum ul { margin:.2rem 0 .4rem; padding-left:1.3rem; }
+  footer { text-align:center; color:var(--muted); padding:2rem 1rem; font-size:.85rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Claude Certified Architect - Foundations</h1>
+  <p>Personal study guide for the free Anthropic Academy prep courses and exam.</p>
+</header>
+
+<nav>
+  <a href="#overview">Overview</a>
+  <a href="#courses">Prep Courses</a>
+  <a href="#summaries">Course Summaries</a>
+  <a href="#domains">Exam Domains</a>
+  <a href="#concepts">Key Concepts</a>
+  <a href="#quiz">Practice Quiz</a>
+  <a href="#plan">Study Plan</a>
+</nav>
+
+<main>
+
+<section id="overview">
+  <h2>Overview</h2>
+  <p>Source: <a href="https://anthropic-partners.skilljar.com/page/claude-certified-architect-foundations-prep-courses" target="_blank" rel="noopener">Anthropic Academy - Prep Courses page</a>. The page lists free courses hosted on Skilljar; only a Skilljar account is needed (no Anthropic account required).</p>
+  <div class="note">
+    The domain names and weightings below come from publicly circulated exam outlines and may change. Confirm them against the official exam guide before relying on them.
+  </div>
+  <div class="card">
+    <strong>Overall progress</strong>
+    <div class="bar" aria-hidden="true"><div id="overallBar"></div></div>
+    <span id="overallText">0 / 0 items complete</span>
+    <p><button class="reset" id="resetBtn" type="button">Reset progress</button></p>
+  </div>
+</section>
+
+<section id="courses">
+  <h2>Prep Courses (from the official page)</h2>
+  <table>
+    <thead><tr><th>Done</th><th>Course</th><th>What it covers</th><th>Most relevant domains</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><input type="checkbox" class="track" data-id="c-fluency"></td>
+        <td><a target="_blank" rel="noopener" href="https://anthropic-partners.skilljar.com/ai-fluency-framework-foundations">AI Fluency: Framework &amp; Foundations</a></td>
+        <td>Collaborating with AI effectively, efficiently, ethically and safely.</td>
+        <td>General / responsible use</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="track" data-id="c-101"></td>
+        <td><a target="_blank" rel="noopener" href="https://anthropic-partners.skilljar.com/claude-101">Claude 101</a></td>
+        <td>Everyday work with Claude, core features, resources for further learning.</td>
+        <td>Baseline</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="track" data-id="c-api"></td>
+        <td><a target="_blank" rel="noopener" href="https://anthropic-partners.skilljar.com/claude-with-the-anthropic-api">Building with the Claude API</a></td>
+        <td>Full spectrum of working with Anthropic models via the API.</td>
+        <td>Prompting, tools, context, agents</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="track" data-id="c-mcp"></td>
+        <td><a target="_blank" rel="noopener" href="https://anthropic-partners.skilljar.com/introduction-to-model-context-protocol">Introduction to Model Context Protocol</a></td>
+        <td>Build MCP servers and clients in Python; tools, resources, prompts.</td>
+        <td>Tool design &amp; MCP</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="track" data-id="c-code"></td>
+        <td><a target="_blank" rel="noopener" href="https://anthropic-partners.skilljar.com/claude-code-in-action">Claude Code in Action</a></td>
+        <td>Long, hands-off Claude Code sessions: steer, configure, automate, verify.</td>
+        <td>Claude Code configuration &amp; workflows</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="track" data-id="c-bedrock"></td>
+        <td><a target="_blank" rel="noopener" href="https://anthropic-partners.skilljar.com/claude-in-amazon-bedrock">Claude with Amazon Bedrock</a></td>
+        <td>Claude on AWS; course built for an AWS accreditation program.</td>
+        <td>Deployment platforms</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="track" data-id="c-gcp"></td>
+        <td><a target="_blank" rel="noopener" href="https://anthropic-partners.skilljar.com/claude-with-google-vertex">Claude on Google Cloud</a></td>
+        <td>Working with Anthropic models on Google Cloud.</td>
+        <td>Deployment platforms</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="summaries">
+  <h2>Course Summaries and Key Points</h2>
+  <div class="note">
+    Outlines, objectives and lesson counts come from each course page. The "Key points to remember" bullets are condensed exam-oriented takeaways based on those syllabi plus standard Claude API / Claude Code / MCP practice; lesson videos are not public, so verify details in the courses.
+  </div>
+
+  <details class="sum" open>
+    <summary>AI Fluency: Framework &amp; Foundations</summary>
+    <p class="meta">14 lectures, 1.1 h video, 1 quiz, certificate. By Anthropic with Prof. Rick Dakan (Ringling College) and Prof. Joseph Feller (UCC).</p>
+    <h4>Outline</h4>
+    <ul>
+      <li><strong>AI Fundamentals &amp; Framework</strong> (10 lessons): how generative AI works, capabilities and limits, why AI fluency matters, intro to the 4D Framework.</li>
+      <li><strong>Practical AI Skills</strong> (10 lessons): project planning with AI, prompting, evaluating output, the description-discernment loop.</li>
+    </ul>
+    <h4>Key points to remember</h4>
+    <ul>
+      <li>The <strong>4Ds</strong>: <strong>Delegation</strong> (what to hand to AI vs. keep), <strong>Description</strong> (communicate goals, context, and format clearly), <strong>Discernment</strong> (critically evaluate outputs and process), <strong>Diligence</strong> (responsible, transparent, accountable use).</li>
+      <li>Three modes of interaction: automation, augmentation, agency.</li>
+      <li>Description and Discernment form an iterative loop: prompt, assess, refine.</li>
+      <li>Goal is effective, efficient, ethical, and safe collaboration, beyond "cool prompts"; applies regardless of which model or tool emerges.</li>
+      <li>Disclose AI involvement and keep humans accountable for final output (the course itself includes an AI diligence statement).</li>
+    </ul>
+  </details>
+
+  <details class="sum">
+    <summary>Claude 101</summary>
+    <p class="meta">Free, certificate of completion.</p>
+    <h4>Outline</h4>
+    <ul>
+      <li><strong>Meet Claude:</strong> what Claude is, first conversation, getting better results, desktop usage.</li>
+      <li><strong>Organizing work and knowledge:</strong> Projects, Artifacts, Skills.</li>
+      <li><strong>Expanding Claude's reach:</strong> connecting tools, enterprise search, Research for deep dives.</li>
+      <li><strong>Putting it together:</strong> use-cases by role, other ways to work with Claude, next steps.</li>
+    </ul>
+    <h4>Key points to remember</h4>
+    <ul>
+      <li>Projects hold persistent context and files for related work.</li>
+      <li>Artifacts are standalone outputs (documents, code, apps) created alongside the chat.</li>
+      <li>Skills package repeatable instructions; connectors link Claude to external tools and data.</li>
+      <li>Better results come from clear context, goals, and iteration.</li>
+    </ul>
+  </details>
+
+  <details class="sum">
+    <summary>Building with the Claude API</summary>
+    <p class="meta">84 lectures, 8.1 h video, 10 quizzes, certificate. Prereqs: Python, JSON, API key.</p>
+    <h4>Outline (lessons per section)</h4>
+    <ul>
+      <li>Getting started with Claude (16): authentication, requests, multi-turn conversation, system prompts, streaming, structured output.</li>
+      <li>Prompt engineering &amp; evaluation (16): prompting strategies, automated eval pipelines.</li>
+      <li>Tool use with Claude (14): function calling, multi-turn tool loops, batch tool calls, built-in tools.</li>
+      <li>Retrieval augmented generation (10): chunking, embeddings, BM25 hybrid search, multi-index, reranking, contextual retrieval.</li>
+      <li>Model Context Protocol (12): custom tools and resources, servers, clients, integration lifecycle.</li>
+      <li>Claude Code &amp; Computer Use (8).</li>
+      <li>Agents and workflows (11): parallelization, chaining, routing, debugging.</li>
+    </ul>
+    <h4>Key points to remember</h4>
+    <ul>
+      <li>The API is stateless: send the full message history on each request.</li>
+      <li>Tool loop: Claude returns <code>tool_use</code>; you run the tool and return a <code>tool_result</code>; repeat until <code>end_turn</code>.</li>
+      <li>Use system prompts for role/behavior; prefill and stop sequences to shape structured output.</li>
+      <li>Evaluate prompts systematically: test dataset, grader (code-based or model-based), score, iterate.</li>
+      <li>Prompting techniques: be clear and direct, use examples (multishot), XML tags, specify output format.</li>
+      <li>RAG: chunk, embed, retrieve; hybrid search combines semantic and BM25; rerank results; contextual retrieval adds chunk context before embedding.</li>
+      <li>Workflows (predefined steps: chaining, routing, parallelization) are more predictable; agents are flexible but less predictable. Prefer workflows when steps are known.</li>
+      <li>Features to know: streaming, prompt caching, extended thinking, citations, image/PDF input.</li>
+    </ul>
+  </details>
+
+  <details class="sum">
+    <summary>Introduction to Model Context Protocol</summary>
+    <p class="meta">16 lectures, 1 h video, 1 quiz, certificate. Prereqs: Python, async/await. Hands-on project: a document management system.</p>
+    <h4>Outline</h4>
+    <ul>
+      <li><strong>MCP fundamentals &amp; server development</strong> (8): architecture, why MCP exists, building a server with tools using the Python SDK, testing with the MCP Inspector.</li>
+      <li><strong>Client implementation &amp; advanced features</strong> (8): building clients, session management, resources, prompts, full application flow.</li>
+    </ul>
+    <h4>Key points to remember</h4>
+    <ul>
+      <li>MCP removes the need to hand-write tool schemas and integrations for each external service.</li>
+      <li>Client-server model: your app hosts an MCP client that talks to one or more MCP servers.</li>
+      <li>Control patterns: <strong>tools</strong> are model-controlled, <strong>resources</strong> are app-controlled data, <strong>prompts</strong> are user-controlled templates.</li>
+      <li>Test and debug servers with the <strong>MCP Inspector</strong>.</li>
+      <li>Handle async communication and resource cleanup correctly in clients.</li>
+    </ul>
+  </details>
+
+  <details class="sum">
+    <summary>Claude Code in Action</summary>
+    <p class="meta">9 lectures, certificate. For developers already using Claude Code for single prompts who want longer, less supervised, team-wide workflows.</p>
+    <h4>Outline</h4>
+    <ul>
+      <li><strong>Steer the Work</strong> (1): plan mode, directed compaction, rewind menu, hands-on vs. autonomous <code>goal</code> / <code>loop</code> runs.</li>
+      <li><strong>Configure Claude</strong> (4): lean <code>CLAUDE.md</code>, skills, permission modes, hooks.</li>
+      <li><strong>Automate Repeat Work</strong> (2): scheduled routines, headless mode, managed code review and GitHub action in PRs.</li>
+      <li><strong>Verify and Share</strong> (2): proportional verification, test-gated hooks, packaging a setup as a plugin.</li>
+    </ul>
+    <h4>Key points to remember</h4>
+    <ul>
+      <li>Scope with plan mode first; compact deliberately so summaries keep what matters; rewind to course-correct.</li>
+      <li>Run parallel agents safely with <strong>git worktrees</strong>.</li>
+      <li>Three instruction surfaces: put each rule where it belongs. Keep <code>CLAUDE.md</code> short so Claude actually follows it.</li>
+      <li>Skills package repeated procedures; start with a <strong>verification skill</strong> that checks Claude's work.</li>
+      <li>Match permission mode to the job: hands-on review through unattended pipelines.</li>
+      <li><strong>Hooks</strong> enforce unskippable rules deterministically, using permission-decision JSON and exit codes to control the loop.</li>
+      <li>Headless jobs use structured output for your own pipelines; routines run scheduled prompts on Anthropic infrastructure.</li>
+      <li>Verify unsupervised runs in proportion to how little you watched; gate turns on real test results; share trusted setups as a plugin.</li>
+    </ul>
+  </details>
+
+  <details class="sum">
+    <summary>Claude with Amazon Bedrock</summary>
+    <p class="meta">85 lectures, 8 h video, 10 quizzes, certificate. Prereqs: Python, JSON, AWS account with Bedrock access.</p>
+    <h4>Outline</h4>
+    <ul>
+      <li>Getting started with Amazon Bedrock (16), Prompt engineering &amp; evaluation (16), Tool use (14), RAG (10), MCP (12), Claude Code &amp; Computer Use (8).</li>
+    </ul>
+    <h4>Key points to remember</h4>
+    <ul>
+      <li>Same Claude concepts as the API course, accessed through AWS Bedrock with <code>boto3</code>.</li>
+      <li>Covers streaming, structured extraction, automated prompt evaluation, multi-step tool execution, hybrid RAG, MCP servers.</li>
+      <li>Also covers prompt caching, extended thinking, image processing, and computer use for UI testing.</li>
+      <li>Claude Code can drive automated, parallelized development workflows.</li>
+    </ul>
+  </details>
+
+  <details class="sum">
+    <summary>Claude on Google Cloud</summary>
+    <p class="meta">85 lectures, 8 h video, 10 quizzes, certificate. Prereqs: Python, JSON, Google Cloud account with Vertex AI access.</p>
+    <h4>Outline</h4>
+    <ul>
+      <li>Getting started (16), Prompt engineering &amp; evaluation (16), Tool use (14), RAG (10), MCP (12), Claude Code &amp; Computer Use (8), Agents and workflows (11).</li>
+    </ul>
+    <h4>Key points to remember</h4>
+    <ul>
+      <li>Set up and authenticate Claude through <strong>Vertex AI</strong> using the Anthropic SDK.</li>
+      <li>Pick models by the trade-off among intelligence, speed, and cost.</li>
+      <li>Evaluate prompts with objective scoring metrics.</li>
+      <li>Tools: web search, file operations, custom functions; advanced features: extended thinking, citations, prompt caching.</li>
+      <li>Design workflows for known task sequences and agents for flexible problem-solving.</li>
+    </ul>
+  </details>
+
+  <div class="card">
+    <h3>Cross-course themes</h3>
+    <ul>
+      <li>Prefer deterministic mechanisms (hooks, schemas, code checks) over prompt-only rules when compliance matters.</li>
+      <li>Start with simple workflows; use agents only when flexibility is needed.</li>
+      <li>Measure prompts with evals instead of guessing.</li>
+      <li>Verify AI work in proportion to how little you supervised it.</li>
+      <li>Bedrock, Vertex AI, and the direct API share the same concepts; only authentication and client setup differ.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="domains">
+  <h2>Exam Domains and Checklists</h2>
+
+  <div class="card">
+    <h3>1. Agentic Architecture &amp; Orchestration <span class="tag">~27%</span></h3>
+    <ul class="check">
+      <li><label><input type="checkbox" class="track" data-id="d1-1"><span>Agentic loop: call model, inspect <code>stop_reason</code>, run tools, return results, repeat</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d1-2"><span>Orchestrator-subagent (hub-and-spoke) patterns and task decomposition</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d1-3"><span>Subagents have isolated context; pass needed info explicitly</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d1-4"><span>Parallel vs. sequential execution, fan-out/fan-in</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d1-5"><span>Hooks and deterministic guardrails vs. prompt-only enforcement</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d1-6"><span>Session state, resumption, and forking</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d1-7"><span>Escalation to humans and error propagation between agents</span></label></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>2. Tool Design &amp; MCP Integration <span class="tag">~18%</span></h3>
+    <ul class="check">
+      <li><label><input type="checkbox" class="track" data-id="d2-1"><span>Write clear tool names, descriptions, and JSON input schemas; descriptions drive tool selection</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d2-2"><span>Limit the number of tools per agent; scope tools to roles</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d2-3"><span>Structured error responses (retryable vs. not, error category)</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d2-4"><span><code>tool_choice</code> options: auto, any, specific tool</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d2-5"><span>MCP primitives: tools, resources, prompts; server vs. client roles</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d2-6"><span>MCP server configuration scopes (project vs. user) and secrets via env vars</span></label></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>3. Claude Code Configuration &amp; Workflows <span class="tag">~20%</span></h3>
+    <ul class="check">
+      <li><label><input type="checkbox" class="track" data-id="d3-1"><span><code>CLAUDE.md</code> hierarchy: user, project, directory-level; path-scoped rules</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d3-2"><span>Custom slash commands and skills; when to use each</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d3-3"><span>Plan mode vs. direct execution</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d3-4"><span>Headless / non-interactive mode in CI/CD with structured output</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d3-5"><span>Permissions, hooks, and settings files</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d3-6"><span>Iterative refinement: tests, examples, and verification loops</span></label></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>4. Prompt Engineering &amp; Structured Output <span class="tag">~20%</span></h3>
+    <ul class="check">
+      <li><label><input type="checkbox" class="track" data-id="d4-1"><span>Explicit criteria and few-shot examples to improve precision</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d4-2"><span>Structured output via tool use / JSON schema; schema validation</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d4-3"><span>Validation-retry loops with error feedback</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d4-4"><span>Batch processing (Message Batches API) vs. synchronous calls: cost and latency trade-offs</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d4-5"><span>Multi-pass review; independent reviewer instance vs. self-review</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d4-6"><span>Handling nullable/optional fields to avoid fabricated values</span></label></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>5. Context Management &amp; Reliability <span class="tag">~15%</span></h3>
+    <ul class="check">
+      <li><label><input type="checkbox" class="track" data-id="d5-1"><span>Preserve critical facts across long conversations (summarization pitfalls, "lost in the middle")</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d5-2"><span>Trim verbose tool output before it fills context</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d5-3"><span>Escalation triggers and human-in-the-loop design</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d5-4"><span>Error handling with partial results and provenance/citations</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d5-5"><span>Confidence calibration and sampling-based human review</span></label></li>
+      <li><label><input type="checkbox" class="track" data-id="d5-6"><span>Large-codebase exploration without context exhaustion (scratchpads, subagents)</span></label></li>
+    </ul>
+  </div>
+</section>
+
+<section id="concepts">
+  <h2>Key Concepts (self-test flashcards)</h2>
+  <details><summary>How does an agentic loop terminate?</summary>
+    <p>When <code>stop_reason</code> is <code>end_turn</code>. If it is <code>tool_use</code>, execute the tools, append <code>tool_result</code> blocks, and call the model again. Do not parse natural-language text to decide completion.</p></details>
+  <details><summary>Prompt instruction vs. hook: which for a hard business rule?</summary>
+    <p>A hook (programmatic enforcement) gives deterministic compliance. Prompts are probabilistic, so use them for guidance, not for rules with financial or safety consequences.</p></details>
+  <details><summary>Do subagents inherit the coordinator's conversation history?</summary>
+    <p>No. They run with isolated context, so the coordinator must pass all required findings and instructions in the task prompt.</p></details>
+  <details><summary>Best way to get reliably structured JSON?</summary>
+    <p>Define a tool with a JSON schema and force it with <code>tool_choice</code>. This prevents syntax errors, but semantic errors still need validation and retry.</p></details>
+  <details><summary>When is the Message Batches API appropriate?</summary>
+    <p>Latency-tolerant, high-volume work (e.g., overnight reports) for a cost saving. Not for blocking workflows such as pre-merge checks.</p></details>
+  <details><summary>Where do team-shared Claude Code instructions live?</summary>
+    <p>Project-level <code>CLAUDE.md</code> (or <code>.claude/</code> rules) committed to version control. User-level files are personal and not shared.</p></details>
+  <details><summary>Why limit tools per agent?</summary>
+    <p>Too many tools degrade selection accuracy. Give each agent a focused set scoped to its role.</p></details>
+  <details><summary>Three MCP primitives?</summary>
+    <p>Tools (model-controlled actions), resources (application-controlled data), prompts (user-controlled templates).</p></details>
+</section>
+
+<section id="quiz">
+  <h2>Practice Quiz</h2>
+  <div id="quizRoot"></div>
+  <p id="quizScore"></p>
+</section>
+
+<section id="plan">
+  <h2>Suggested Study Plan</h2>
+  <table>
+    <thead><tr><th>Step</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Complete Claude 101 and AI Fluency for baseline vocabulary.</td></tr>
+      <tr><td>2</td><td>Work through Building with the Claude API with hands-on code (tool use, structured output, agent loop).</td></tr>
+      <tr><td>3</td><td>Do Introduction to MCP and build one small server.</td></tr>
+      <tr><td>4</td><td>Do Claude Code in Action; set up your own <code>CLAUDE.md</code>, a skill, a hook, and a headless CI run.</td></tr>
+      <tr><td>5</td><td>Skim the Bedrock and Google Cloud courses for platform differences.</td></tr>
+      <tr><td>6</td><td>Build a small multi-agent project (coordinator + 2 subagents + MCP tool) covering all five domains.</td></tr>
+      <tr><td>7</td><td>Review the checklists above, then retake the quiz until consistently correct.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</main>
+
+<footer>Unofficial study aid. Not affiliated with Anthropic.</footer>
+
+<script>
+(function () {
+  const KEY = "cca-f-progress-v1";
+  let state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { state = {}; }
+
+  const boxes = document.querySelectorAll("input.track");
+  const bar = document.getElementById("overallBar");
+  const text = document.getElementById("overallText");
+
+  function refresh() {
+    const done = [...boxes].filter(b => b.checked).length;
+    bar.style.width = (boxes.length ? (done / boxes.length) * 100 : 0) + "%";
+    text.textContent = done + " / " + boxes.length + " items complete";
+  }
+
+  boxes.forEach(b => {
+    b.checked = !!state[b.dataset.id];
+    b.addEventListener("change", () => {
+      state[b.dataset.id] = b.checked;
+      localStorage.setItem(KEY, JSON.stringify(state));
+      refresh();
+    });
+  });
+  refresh();
+
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    if (!confirm("Reset all progress?")) return;
+    state = {};
+    localStorage.removeItem(KEY);
+    boxes.forEach(b => (b.checked = false));
+    refresh();
+  });
+
+  const questions = [
+    { q: "An agent's loop receives stop_reason = \"tool_use\". What should the code do next?",
+      a: ["Treat the task as complete", "Execute the requested tools, append tool_result messages, and call the model again", "Parse the text for the word 'done'", "Start a new conversation"],
+      c: 1, why: "tool_use means the model wants tool results before continuing; only end_turn signals completion." },
+    { q: "Refunds above $500 must always require human approval. What is the most reliable enforcement?",
+      a: ["A strongly worded system prompt", "Few-shot examples of escalation", "A hook/programmatic check that blocks the tool call", "Asking the model to self-rate its confidence"],
+      c: 2, why: "Deterministic code-level enforcement guarantees compliance; prompts are probabilistic." },
+    { q: "A subagent produces poor results because it lacks findings from earlier research. Most likely cause?",
+      a: ["The model is too small", "Subagents don't inherit coordinator context; it was not passed in the task prompt", "Too many tokens in output", "tool_choice was set to auto"],
+      c: 1, why: "Subagent context is isolated; relevant information must be passed explicitly." },
+    { q: "You need guaranteed schema-conformant JSON from extraction. Best approach?",
+      a: ["Ask for JSON in the prompt", "Use a tool with a JSON schema and force it with tool_choice", "Regex the output", "Lower the temperature to 0"],
+      c: 1, why: "Tool-use with a schema eliminates syntax errors; add validation for semantic errors." },
+    { q: "Nightly processing of 50,000 documents, no one waiting on results. Which fits best?",
+      a: ["Synchronous calls in a loop", "Message Batches API", "Streaming responses", "A single huge prompt"],
+      c: 1, why: "Batch API offers lower cost for latency-tolerant bulk work." },
+    { q: "Where should coding standards shared by the whole team for Claude Code be stored?",
+      a: ["~/.claude/CLAUDE.md on each laptop", "Project-level CLAUDE.md committed to the repo", "In a chat message", "In the model's memory"],
+      c: 1, why: "Project-level config in version control is shared; user-level config is personal." },
+    { q: "An agent with 20 overlapping tools frequently picks the wrong one. Best first fix?",
+      a: ["Add more tools", "Scope tools per role and sharpen descriptions", "Increase max_tokens", "Disable tool use"],
+      c: 1, why: "Fewer, well-described, role-scoped tools improve selection accuracy." },
+    { q: "Which MCP primitive is user-controlled reusable templates?",
+      a: ["Tools", "Resources", "Prompts", "Sampling"],
+      c: 2, why: "Prompts are templates; tools are model-controlled; resources are app-controlled data." }
+  ];
+
+  const root = document.getElementById("quizRoot");
+  const scoreEl = document.getElementById("quizScore");
+  let score = 0, answered = 0;
+
+  questions.forEach((item, i) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    const h = document.createElement("strong");
+    h.textContent = (i + 1) + ". " + item.q;
+    card.appendChild(h);
+    card.appendChild(document.createElement("br"));
+    const fb = document.createElement("div");
+    fb.className = "fb";
+    const btns = item.a.map((label, idx) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "quizbtn";
+      b.textContent = label;
+      b.addEventListener("click", () => {
+        if (card.dataset.done) return;
+        card.dataset.done = "1";
+        answered++;
+        if (idx === item.c) { score++; b.classList.add("right"); fb.textContent = "Correct. " + item.why; }
+        else { b.classList.add("wrong"); btns[item.c].classList.add("right"); fb.textContent = "Incorrect. " + item.why; }
+        scoreEl.textContent = "Score: " + score + " / " + answered + " answered (" + questions.length + " total)";
+      });
+      card.appendChild(b);
+      return b;
+    });
+    card.appendChild(fb);
+    root.appendChild(card);
+  });
+})();
+</script>
+</body>
+</html>

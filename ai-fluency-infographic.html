@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Fluency: Framework &amp; Foundations - Infographic</title>
+<style>
+  :root { --bg:#faf9f5; --ink:#1f1e1d; --muted:#6b6a68; --line:#e6e3dc;
+          --d1:#c96442; --d2:#3b82a0; --d3:#7a5ea8; --d4:#2f7d4f; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#ece9e0; font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); }
+  .poster { max-width:900px; margin:1.5rem auto; background:var(--bg); border-radius:16px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,.12); }
+  .hero { background:var(--ink); color:#fff; padding:2.5rem 2rem; text-align:center; }
+  .hero small { letter-spacing:.15em; text-transform:uppercase; color:#e9b7a3; font-weight:700; }
+  .hero h1 { margin:.4rem 0; font-size:2.2rem; line-height:1.15; }
+  .hero p { margin:0 auto; max-width:620px; color:#d6d3cc; }
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); }
+  .stat { background:#fff; padding:1rem .5rem; text-align:center; }
+  .stat b { display:block; font-size:1.8rem; color:var(--d1); }
+  .stat span { font-size:.8rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+  .block { padding:2rem; }
+  .block h2 { margin:0 0 1rem; font-size:1.3rem; text-align:center; }
+  .block h2::after { content:""; display:block; width:50px; height:3px; background:var(--d1); margin:.4rem auto 0; }
+
+  .fourD { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
+  .d { background:#fff; border:1px solid var(--line); border-top:6px solid var(--c); border-radius:12px; padding:1rem 1.1rem; }
+  .d .badge { display:inline-flex; align-items:center; justify-content:center; width:2.4rem; height:2.4rem; border-radius:50%; background:var(--c); color:#fff; font-weight:800; font-size:1.2rem; }
+  .d h3 { margin:.5rem 0 .2rem; color:var(--c); }
+  .d p { margin:0 0 .4rem; font-size:.92rem; }
+  .d .ask { font-size:.85rem; color:var(--muted); font-style:italic; }
+
+  .loop { display:flex; align-items:center; justify-content:center; gap:.6rem; flex-wrap:wrap; margin-top:1.2rem; }
+  .pill { padding:.5rem 1.1rem; border-radius:999px; color:#fff; font-weight:700; }
+  .arrow { font-size:1.4rem; color:var(--muted); }
+  .loopnote { text-align:center; color:var(--muted); font-size:.9rem; margin-top:.5rem; }
+
+  .modes { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+  .mode { background:#fff; border:1px solid var(--line); border-radius:12px; padding:1rem; text-align:center; }
+  .mode .ic { font-size:1.6rem; font-weight:800; color:var(--d1); }
+  .mode h3 { margin:.2rem 0; font-size:1rem; }
+  .mode p { margin:0; font-size:.85rem; color:var(--muted); }
+
+  .path { display:grid; grid-template-columns:1fr 1fr; gap:1rem; position:relative; }
+  .step { background:#fff; border:1px solid var(--line); border-radius:12px; padding:1rem 1.1rem; }
+  .step .n { font-size:.75rem; font-weight:800; letter-spacing:.1em; color:var(--d1); text-transform:uppercase; }
+  .step h3 { margin:.2rem 0; }
+  .step .les { display:inline-block; background:#f3e3dc; color:var(--d1); font-weight:700; font-size:.78rem; border-radius:999px; padding:.05rem .6rem; }
+  .step ul { margin:.5rem 0 0; padding-left:1.1rem; font-size:.9rem; }
+
+  .alt { background:#f3f1ea; }
+  .takeaways { display:grid; grid-template-columns:1fr 1fr; gap:.7rem; }
+  .tk { background:#fff; border-left:5px solid var(--d4); border-radius:8px; padding:.7rem 1rem; font-size:.92rem; }
+
+  .people { display:flex; flex-wrap:wrap; gap:.8rem; justify-content:center; }
+  .person { background:#fff; border:1px solid var(--line); border-radius:12px; padding:.7rem 1rem; width:200px; text-align:center; }
+  .person b { display:block; }
+  .person span { font-size:.8rem; color:var(--muted); }
+
+  .cta { background:var(--d1); color:#fff; text-align:center; padding:1.5rem; }
+  .cta a { color:#fff; font-weight:700; }
+  .foot { text-align:center; font-size:.78rem; color:var(--muted); padding:1rem; }
+
+  @media (max-width:640px) {
+    .stats { grid-template-columns:repeat(2,1fr); }
+    .fourD, .modes, .path, .takeaways { grid-template-columns:1fr; }
+    .hero h1 { font-size:1.7rem; }
+  }
+  @media print { body { background:#fff; } .poster { box-shadow:none; margin:0; } }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="hero">
+    <small>Anthropic Academy - Free Course</small>
+    <h1>AI Fluency: Framework &amp; Foundations</h1>
+    <p>Learn to collaborate with AI systems effectively, efficiently, ethically, and safely.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>14</b><span>Lectures</span></div>
+    <div class="stat"><b>1.1h</b><span>Video</span></div>
+    <div class="stat"><b>1</b><span>Quiz</span></div>
+    <div class="stat"><b>Free</b><span>Certificate</span></div>
+  </div>
+
+  <div class="block">
+    <h2>The 4D Framework</h2>
+    <div class="fourD">
+      <div class="d" style="--c:var(--d1)">
+        <div class="badge">1</div>
+        <h3>Delegation</h3>
+        <p>Decide what work to do yourself, what to give to AI, and how to split it. Understand the goals, the task, and what the AI can and cannot do.</p>
+        <div class="ask">Should AI do this, and which part?</div>
+      </div>
+      <div class="d" style="--c:var(--d2)">
+        <div class="badge">2</div>
+        <h3>Description</h3>
+        <p>Communicate clearly: the product you want, how the AI should approach it, and how it should behave. Good context and prompts drive good results.</p>
+        <div class="ask">Have I said what I need, and how?</div>
+      </div>
+      <div class="d" style="--c:var(--d3)">
+        <div class="badge">3</div>
+        <h3>Discernment</h3>
+        <p>Evaluate what the AI produced and how it got there. Check accuracy, quality, and fit with your goals before relying on it.</p>
+        <div class="ask">Is this right, and is it good enough?</div>
+      </div>
+      <div class="d" style="--c:var(--d4)">
+        <div class="badge">4</div>
+        <h3>Diligence</h3>
+        <p>Take responsibility for the outcome: choose tools thoughtfully, be transparent about AI involvement, and own what you share.</p>
+        <div class="ask">Am I using and presenting this responsibly?</div>
+      </div>
+    </div>
+
+    <div class="loop">
+      <span class="pill" style="background:var(--d2)">Description</span>
+      <span class="arrow">&#8594;</span>
+      <span class="pill" style="background:var(--d3)">Discernment</span>
+      <span class="arrow">&#8594;</span>
+      <span class="pill" style="background:var(--d2)">Refine Description</span>
+      <span class="arrow">&#8635;</span>
+    </div>
+    <div class="loopnote">The description-discernment loop: prompt, assess, improve, repeat.</div>
+  </div>
+
+  <div class="block alt">
+    <h2>Three Ways to Interact with AI</h2>
+    <div class="modes">
+      <div class="mode"><div class="ic">A</div><h3>Automation</h3><p>You define the task; AI executes it.</p></div>
+      <div class="mode"><div class="ic">B</div><h3>Augmentation</h3><p>You and AI work on it together, thinking in partnership.</p></div>
+      <div class="mode"><div class="ic">C</div><h3>Agency</h3><p>AI acts independently on your behalf, within the behavior you set.</p></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Course Path</h2>
+    <div class="path">
+      <div class="step">
+        <div class="n">Section 1</div>
+        <h3>AI Fundamentals &amp; Framework</h3>
+        <span class="les">10 lessons</span>
+        <ul>
+          <li>How generative AI systems work</li>
+          <li>Capabilities and limitations</li>
+          <li>Why AI fluency matters</li>
+          <li>Introduction to the 4D Framework</li>
+        </ul>
+      </div>
+      <div class="step">
+        <div class="n">Section 2</div>
+        <h3>Practical AI Skills</h3>
+        <span class="les">10 lessons</span>
+        <ul>
+          <li>Project planning with AI</li>
+          <li>Crafting effective prompts</li>
+          <li>Evaluating outputs critically</li>
+          <li>Iterating the description-discernment loop</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="block alt">
+    <h2>Key Takeaways</h2>
+    <div class="takeaways">
+      <div class="tk">Fluency goes beyond "cool prompts": it is a durable skill set.</div>
+      <div class="tk">The framework applies regardless of which AI model or tool emerges.</div>
+      <div class="tk">Delegate strategically instead of reactively.</div>
+      <div class="tk">Always evaluate output critically before using it.</div>
+      <div class="tk">Be transparent about AI involvement; humans stay accountable.</div>
+      <div class="tk">Useful across creative, business, and educational contexts.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Who Made It</h2>
+    <div class="people">
+      <div class="person"><b>Rick Dakan</b><span>Ringling College of Art and Design</span></div>
+      <div class="person"><b>Joseph Feller</b><span>University College Cork</span></div>
+      <div class="person"><b>Maggie Vo</b><span>Anthropic Education</span></div>
+      <div class="person"><b>Drew Bent</b><span>Anthropic Education Research</span></div>
+    </div>
+  </div>
+
+  <div class="cta">
+    Enroll for free:
+    <a href="https://anthropic-partners.skilljar.com/ai-fluency-framework-foundations" target="_blank" rel="noopener">anthropic-partners.skilljar.com/ai-fluency-framework-foundations</a>
+  </div>
+  <div class="foot">Unofficial study infographic. Course facts from the Skilljar course page; 4D descriptions are condensed summaries.</div>
+</div>
+</body>
+</html>
