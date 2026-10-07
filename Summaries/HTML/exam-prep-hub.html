@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Certified Architect - Foundations: Exam Prep Hub</title>
+<style>
+  :root {
+    --bg:#f6f5f1; --panel:#ffffff; --panel2:#f0eee8; --ink:#1f1e1d; --muted:#6b6a68; --line:#e4e1d8;
+    --accent:#c96442; --accent-soft:#f6e4dc; --ok:#2f7d4f; --ok-soft:#e1f2e7; --bad:#c0392b; --bad-soft:#fbe4e0;
+    --shadow:0 1px 2px rgba(0,0,0,.05), 0 6px 20px rgba(0,0,0,.06);
+    --c-fluency:#c96442; --c-c101:#d19a2b; --c-api:#3b82a0; --c-vertex:#2f7d4f; --c-bedrock:#b5651d; --c-mcp:#7a5ea8; --c-cc:#d1477a;
+  }
+  [data-theme="dark"] {
+    --bg:#141413; --panel:#1e1d1b; --panel2:#262522; --ink:#ecebe6; --muted:#a09e97; --line:#33312d;
+    --accent:#e08463; --accent-soft:#3a2a23; --ok:#5ec584; --ok-soft:#1c3025; --bad:#ef7b6d; --bad-soft:#3a201d;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.35);
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15.5px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; transition:background .25s,color .25s; }
+  code { background:var(--panel2); border:1px solid var(--line); padding:.05rem .35rem; border-radius:5px; font:.86em ui-monospace,Consolas,monospace; }
+  a { color:var(--accent); }
+  button { font:inherit; color:inherit; cursor:pointer; }
+
+  /* top bar */
+  .top { position:sticky; top:0; z-index:30; display:flex; align-items:center; gap:.8rem; padding:.65rem 1.1rem; background:color-mix(in srgb,var(--panel) 85%,transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .brand { font-weight:800; letter-spacing:-.01em; white-space:nowrap; }
+  .brand span { color:var(--accent); }
+  .search { flex:1; max-width:460px; position:relative; margin-left:auto; }
+  .search input { width:100%; padding:.5rem .8rem .5rem 2rem; border:1px solid var(--line); background:var(--panel2); color:var(--ink); border-radius:10px; font:inherit; outline:none; }
+  .search input:focus { border-color:var(--accent); }
+  .search::before { content:"\2315"; position:absolute; left:.7rem; top:50%; transform:translateY(-50%); color:var(--muted); }
+  .tbtn { border:1px solid var(--line); background:var(--panel); border-radius:10px; padding:.42rem .75rem; font-size:.85rem; font-weight:600; white-space:nowrap; transition:.15s; }
+  .tbtn:hover { border-color:var(--accent); }
+  .tbtn.on { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .menu-btn { display:none; }
+
+  /* layout */
+  .layout { display:grid; grid-template-columns:270px 1fr; max-width:1280px; margin:0 auto; }
+  .side { position:sticky; top:55px; align-self:start; height:calc(100vh - 55px); overflow:auto; padding:1rem .8rem 2rem; border-right:1px solid var(--line); }
+  .side h4 { margin:1rem .6rem .35rem; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+  .nav { display:flex; align-items:center; gap:.6rem; width:100%; text-align:left; padding:.5rem .6rem; border:0; background:transparent; border-radius:9px; font-size:.92rem; transition:.12s; }
+  .nav:hover { background:var(--panel2); }
+  .nav.active { background:var(--accent-soft); color:var(--accent); font-weight:700; }
+  .dot { width:10px; height:10px; border-radius:50%; background:var(--c,var(--accent)); flex:none; }
+  .nav .pc { margin-left:auto; font-size:.74rem; color:var(--muted); font-variant-numeric:tabular-nums; }
+  .overall { margin:1rem .6rem 0; }
+  .meter { height:8px; background:var(--panel2); border-radius:99px; overflow:hidden; border:1px solid var(--line); }
+  .meter > i { display:block; height:100%; width:0; background:linear-gradient(90deg,var(--accent),var(--ok)); transition:width .3s; }
+  .overall small { color:var(--muted); }
+
+  main { padding:1.6rem 1.8rem 4rem; min-width:0; }
+  .head h1 { margin:0 0 .25rem; font-size:1.9rem; letter-spacing:-.02em; }
+  .head p { margin:0 0 1rem; color:var(--muted); max-width:760px; }
+  .badge { display:inline-block; padding:.12rem .6rem; border-radius:99px; background:var(--accent-soft); color:var(--accent); font-size:.76rem; font-weight:700; }
+  .facts { display:flex; flex-wrap:wrap; gap:.5rem; margin:.4rem 0 1rem; }
+
+  .callout { border:1px solid var(--line); border-left:5px solid var(--c,var(--accent)); background:var(--panel); border-radius:12px; padding:.8rem 1rem; margin:1rem 0; box-shadow:var(--shadow); }
+  .callout b.t { display:block; font-size:.74rem; letter-spacing:.1em; text-transform:uppercase; color:var(--c,var(--accent)); margin-bottom:.2rem; }
+  .callout ul { margin:.2rem 0 0; padding-left:1.15rem; }
+  .note { background:var(--accent-soft); border-radius:10px; padding:.6rem .9rem; font-size:.88rem; margin:.8rem 0; }
+
+  .sec { margin:1.6rem 0; }
+  .sec > h3 { margin:0 0 .7rem; font-size:1.1rem; display:flex; align-items:center; gap:.5rem; }
+  .sec > h3::before { content:""; width:6px; height:1.1em; border-radius:3px; background:var(--c,var(--accent)); }
+  .items { display:grid; gap:.55rem; }
+  .item { display:grid; grid-template-columns:auto 1fr; gap:.7rem; padding:.7rem .9rem; border:1px solid var(--line); border-radius:12px; background:var(--panel); transition:.15s; }
+  .item:hover { border-color:var(--c,var(--accent)); }
+  .item.done { opacity:.62; }
+  .item input { width:1.1rem; height:1.1rem; margin-top:.2rem; accent-color:var(--ok); cursor:pointer; }
+  .term { font-weight:700; }
+  .def { color:var(--ink); }
+  .def, .term .sub { transition:filter .2s; }
+  body.recall .item:not(.show) .def { filter:blur(7px); user-select:none; cursor:pointer; }
+  body.recall .item:not(.show) { cursor:pointer; }
+
+  /* home */
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:.9rem; }
+  .card { display:flex; flex-direction:column; justify-content:flex-start; border:1px solid var(--line); border-top:5px solid var(--c,var(--accent)); background:var(--panel); border-radius:14px; padding:1rem 1.1rem; box-shadow:var(--shadow); text-align:left; transition:.15s; }
+  button.card:hover { transform:translateY(-2px); }
+  .card h3 { margin:.1rem 0 .3rem; font-size:1.02rem; }
+  .card p { margin:.2rem 0 .6rem; font-size:.88rem; color:var(--muted); }
+  .dom { display:grid; grid-template-columns:1fr; gap:.7rem; }
+  .dom .row { display:grid; grid-template-columns:1fr 70px; gap:.7rem; align-items:center; padding:.8rem 1rem; border:1px solid var(--line); border-radius:12px; background:var(--panel); }
+  .dom .row b { display:block; }
+  .dom .row small { color:var(--muted); }
+  .dom .pct { font-size:1.4rem; font-weight:800; color:var(--accent); text-align:right; }
+  .dom .meter { grid-column:1/-1; }
+  .dom .meter i { background:var(--accent); width:var(--w); }
+
+  /* tables */
+  .tw { overflow:auto; border:1px solid var(--line); border-radius:12px; background:var(--panel); margin:.6rem 0 1.4rem; }
+  table { width:100%; border-collapse:collapse; font-size:.9rem; }
+  th, td { text-align:left; padding:.55rem .8rem; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { background:var(--panel2); font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+  tr:last-child td { border-bottom:0; }
+  h2.ch { margin:1.8rem 0 .2rem; font-size:1.15rem; }
+
+  /* flashcards */
+  .fc-bar { display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; margin-bottom:1rem; }
+  select { background:var(--panel); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:.42rem .6rem; font:inherit; }
+  .stage { perspective:1200px; max-width:680px; margin:0 auto; }
+  .flip { position:relative; height:280px; transition:transform .5s; transform-style:preserve-3d; cursor:pointer; }
+  .flip.on { transform:rotateY(180deg); }
+  .face { position:absolute; inset:0; backface-visibility:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:1.6rem; border-radius:18px; border:1px solid var(--line); background:var(--panel); box-shadow:var(--shadow); border-top:6px solid var(--c,var(--accent)); overflow:auto; }
+  .face.back { transform:rotateY(180deg); background:var(--panel2); }
+  .face .lab { font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:.6rem; }
+  .face .big { font-size:1.35rem; font-weight:700; }
+  .face .txt { font-size:1.05rem; }
+  .fc-actions { display:flex; gap:.7rem; justify-content:center; margin-top:1.1rem; flex-wrap:wrap; }
+  .btn { border:1px solid var(--line); background:var(--panel); border-radius:10px; padding:.55rem 1.1rem; font-weight:600; transition:.15s; }
+  .btn:hover { border-color:var(--accent); }
+  .btn.ok { background:var(--ok-soft); border-color:var(--ok); color:var(--ok); }
+  .btn.again { background:var(--bad-soft); border-color:var(--bad); color:var(--bad); }
+  .btn.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .hint { text-align:center; color:var(--muted); font-size:.82rem; margin-top:.7rem; }
+
+  /* quiz */
+  .qbox { max-width:760px; }
+  .q { font-size:1.15rem; font-weight:700; margin:.5rem 0 1rem; }
+  .opt { display:block; width:100%; text-align:left; margin:.45rem 0; padding:.7rem .95rem; border:1px solid var(--line); background:var(--panel); border-radius:12px; transition:.12s; }
+  .opt:hover:not(:disabled) { border-color:var(--accent); }
+  .opt.right { background:var(--ok-soft); border-color:var(--ok); }
+  .opt.wrong { background:var(--bad-soft); border-color:var(--bad); }
+  .why { margin-top:.8rem; padding:.7rem .95rem; border-radius:12px; background:var(--panel2); font-size:.92rem; }
+  .qprog { color:var(--muted); font-size:.85rem; }
+
+  mark { background:#ffe27a; color:#222; border-radius:3px; padding:0 .1rem; }
+  .src { font-size:.74rem; color:var(--muted); margin-bottom:.15rem; display:flex; align-items:center; gap:.35rem; }
+  footer { color:var(--muted); font-size:.8rem; text-align:center; padding:2rem 1rem; }
+
+  @media (max-width:860px) {
+    .layout { grid-template-columns:1fr; }
+    .side { position:fixed; left:0; top:55px; z-index:25; width:280px; background:var(--bg); transform:translateX(-100%); transition:transform .25s; box-shadow:var(--shadow); }
+    body.menu .side { transform:none; }
+    .menu-btn { display:inline-block; }
+    main { padding:1.2rem 1rem 3rem; }
+    .brand small { display:none; }
+  }
+  @media print { .top, .side { display:none; } .layout { display:block; } body.recall .item .def { filter:none !important; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <button class="tbtn menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
+  <div class="brand">Claude Architect <span>Foundations</span> <small style="color:var(--muted);font-weight:600">Prep Hub</small></div>
+  <div class="search"><input id="q" type="search" placeholder="Search all notes... ( / )" autocomplete="off"></div>
+  <button class="tbtn" id="recallBtn" title="Blur the answers; click an item to reveal it">Recall mode</button>
+  <button class="tbtn" id="themeBtn" title="Toggle light / dark">Dark</button>
+</header>
+
+<div class="layout">
+  <aside class="side" id="side"></aside>
+  <main id="main"></main>
+</div>
+<footer>Unofficial study aid. Built from the course syllabi and standard Claude documentation concepts. Confirm exam details against official Anthropic material.</footer>
+
+<script>
+/* ------------------------------ DATA ------------------------------ */
+const COURSES = [
+{
+  id:"fluency", name:"AI Fluency: Framework & Foundations", short:"AI Fluency", color:"var(--c-fluency)",
+  blurb:"The 4D Framework for effective, efficient, ethical and safe human-AI collaboration.",
+  facts:["14 lectures","1.1 h video","1 quiz"],
+  big:"Fluency is more than clever prompts. Four competencies (4Ds) apply to any model or tool: Delegation, Description, Discernment, Diligence.",
+  tips:["Be able to name each D and its three sub-skills.","Know which D a scenario tests (deciding what to hand to AI vs. checking its output vs. disclosing AI use).","Know the three interaction modes and tell them apart by who drives the work."],
+  sections:[
+   {h:"The 4D Framework", items:[
+    ["The 4Ds","Delegation, Description, Discernment, Diligence: the four interconnected competencies for working with AI effectively, efficiently, ethically and safely, regardless of which model or tool emerges."],
+    ["Delegation","Deciding what work is done by humans, what by AI, and how to split it. Sub-skills: <b>problem awareness</b> (goals and nature of the task), <b>platform awareness</b> (what AI systems can and cannot do), <b>task delegation</b> (distributing work thoughtfully)."],
+    ["Description","Communicating effectively with AI. Sub-skills: <b>product description</b> (what output you want), <b>process description</b> (how the AI should approach the work), <b>performance description</b> (how the AI should behave in the interaction)."],
+    ["Discernment","Critically evaluating what AI gives you. Sub-skills: <b>product discernment</b> (is the output accurate, appropriate, relevant?), <b>process discernment</b> (is the reasoning sound; any logic errors?), <b>performance discernment</b> (how did the AI behave during the interaction?)."],
+    ["Diligence","Taking responsibility for AI use. Sub-skills: <b>creation diligence</b> (choose systems thoughtfully), <b>transparency diligence</b> (be honest about AI's role with those who need to know), <b>deployment diligence</b> (verify and own output you share)."],
+    ["Description-Discernment loop","Describe, receive output, evaluate, refine the description, repeat. Iteration is the normal way good results are produced."]
+   ]},
+   {h:"Three ways to interact with AI", items:[
+    ["Automation","The human defines a specific task and the AI executes it."],
+    ["Augmentation","Human and AI collaborate as thinking partners, iterating together on the work."],
+    ["Agency","The AI is set up to act independently on the human's behalf; the human defines its knowledge and behavior and then interacts with its results."]
+   ]},
+   {h:"Generative AI fundamentals", items:[
+    ["How LLMs generate text","Models predict likely next tokens based on patterns learned in training. Output is fluent, which can make wrong answers sound confident."],
+    ["Hallucination","Plausible-sounding but false output. This is why Discernment and Diligence matter."],
+    ["Uneven capabilities","AI can excel at some tasks and fail at similar-looking ones; platform awareness means testing rather than assuming."],
+    ["Context limits","A model only works with what is in its context window. Missing context leads to generic or wrong output."]
+   ]},
+   {h:"Practical skills", items:[
+    ["Project planning with AI","Clarify the goal, decide who does which part (Delegation), then describe each part clearly."],
+    ["Effective prompts","State goal, audience, context, constraints and desired format. Give examples. Ask for reasoning when needed."],
+    ["Let Claude ask questions","Invite the AI to ask clarifying questions before starting, to expose missing context."],
+    ["Evaluate critically","Check facts, logic and fit with the goal. Compare against what you know; verify before sharing."],
+    ["Be transparent","Disclose AI involvement where it matters; the human stays accountable for the final output."]
+   ]}
+  ]
+},
+{
+  id:"c101", name:"Claude 101", short:"Claude 101", color:"var(--c-c101)",
+  blurb:"Everyday work with Claude: core features and where to go next.",
+  facts:["Free","Certificate"],
+  big:"Know the product building blocks and when to use each: conversation, Projects, Artifacts, Skills, connectors, enterprise search, Research.",
+  tips:["Match a need to the feature (persistent context = Projects; standalone output = Artifacts; repeatable procedure = Skills; external data = connectors).","Remember that better results come from context, specifics and iteration."],
+  sections:[
+   {h:"Meet Claude", items:[
+    ["Getting better results","Be specific, supply context and examples, state the format you want, and iterate on the output instead of starting over."],
+    ["First conversation","Start with a clear task and relevant background; follow up to refine."],
+    ["Desktop app","Work with Claude alongside your other apps for everyday tasks."]
+   ]},
+   {h:"Organizing work and knowledge", items:[
+    ["Projects","Workspaces that keep files, instructions and context together so related chats share the same background."],
+    ["Artifacts","Standalone outputs (documents, code, apps, visuals) created next to the chat so you can iterate on them."],
+    ["Skills","Packaged instructions for repeatable tasks that Claude can apply when relevant."]
+   ]},
+   {h:"Expanding Claude's reach", items:[
+    ["Connectors (connecting your tools)","Link Claude to external tools and data so it can work with your real information."],
+    ["Enterprise search","Find answers across company knowledge sources."],
+    ["Research","Deep-dive investigations that gather and synthesize information on a topic."]
+   ]},
+   {h:"Putting it together", items:[
+    ["Use cases by role","The same features combine differently per job (writing, analysis, engineering, operations)."],
+    ["Other ways to work with Claude","Beyond chat: coding tools, API, and automation for more advanced needs."]
+   ]}
+  ]
+},
+{
+  id:"api", name:"Building with the Claude API", short:"Claude API", color:"var(--c-api)",
+  blurb:"Requests, prompting and evals, tool use, RAG, MCP, Claude Code, and agent architectures.",
+  facts:["84 lectures","8.1 h video","10 quizzes","Python"],
+  big:"The API is stateless and Claude only suggests tool calls; your code does everything else: keeps history, runs tools, loops, validates.",
+  tips:["Know the tool-use loop and each stop_reason by heart.","Workflows (fixed steps) vs. agents (model-chosen steps): choose workflows when steps are known.","Know why and how to evaluate prompts systematically."],
+  sections:[
+   {h:"Request basics", items:[
+    ["Messages API","Required: <code>model</code>, <code>max_tokens</code>, <code>messages</code>. Messages are objects with a <code>role</code> (user/assistant) and <code>content</code>, alternating turns."],
+    ["Stateless","Claude remembers nothing between calls. Append each assistant reply to your list and resend the full history every request."],
+    ["System prompt","Passed in the separate <code>system</code> parameter (not a message). Sets role, tone and rules."],
+    ["max_tokens","A hard cap on output length, not a target. Hitting it ends the reply with <code>stop_reason: max_tokens</code>."],
+    ["temperature","Randomness from 0 to 1. Low for extraction and factual work; higher for creative variety."],
+    ["Response shape","A list of content blocks (text, tool_use, ...), a <code>stop_reason</code>, and <code>usage</code> (input and output tokens)."],
+    ["stop_reason values","<code>end_turn</code> (finished), <code>max_tokens</code> (cut off), <code>stop_sequence</code> (hit your stop string), <code>tool_use</code> (wants a tool run)."],
+    ["Streaming","Receive tokens as they are generated via events; improves perceived latency. Accumulate the deltas to rebuild the final message."],
+    ["Prefilling","Start the assistant turn yourself so Claude continues from it, steering format or direction. Check model support."],
+    ["Stop sequences","Strings that make generation halt. Combined with prefill they yield clean structured output without trailing commentary."],
+    ["Choosing a model","Trade intelligence vs. speed vs. cost: larger models for hard reasoning, smaller/faster ones for high-volume simple tasks."]
+   ]},
+   {h:"Prompt engineering & evaluation", items:[
+    ["Eval workflow","Draft prompt, build a test dataset, run it, grade the outputs, score, change the prompt, repeat. Measure instead of guessing."],
+    ["Dataset generation","Use a fast model to generate varied test inputs, including edge cases."],
+    ["Code-based graders","Deterministic checks: exact match, valid JSON/syntax, length, keyword presence. Cheap and reliable."],
+    ["Model-based graders","Another Claude call grades against a rubric for qualities code cannot check. Humans for the highest stakes."],
+    ["Be clear and direct","Lead with the task using an action verb; say plainly what you want."],
+    ["Be specific","Add guidelines about the output and the steps to follow."],
+    ["XML tags","Delimit data, instructions and examples so Claude cannot confuse them."],
+    ["Examples (multishot)","Show input/output pairs, including edge cases, to lock in format and style."],
+    ["Reason first","Ask Claude to think step by step before answering on complex tasks."],
+    ["Structured output","Request JSON/XML explicitly; prefill plus a stop sequence, or better a tool with a schema."]
+   ]},
+   {h:"Tool use", items:[
+    ["Core idea","You describe tools; Claude decides when to call one and returns a <code>tool_use</code> block. Your code runs it. Claude never executes tools itself."],
+    ["Tool definition","<code>name</code>, <code>description</code>, and <code>input_schema</code> (JSON Schema). Rich descriptions (what, when, limits) drive correct selection."],
+    ["The loop","Send request with tools; if <code>stop_reason = tool_use</code>, run the tool, append a <code>tool_result</code> in a user message, call again; stop at <code>end_turn</code>."],
+    ["tool_use_id","Each tool_use block has an id; the matching tool_result must reference it."],
+    ["Multiple tool calls","One response can contain several tool_use blocks; return all results together in a single user message."],
+    ["tool_choice","<code>auto</code> (model decides), <code>any</code> (must use some tool), <code>tool</code> (must use a named tool)."],
+    ["Tool errors","Return a tool_result with <code>is_error: true</code> and a helpful message so Claude can recover or retry."],
+    ["Extraction via tools","Define a schema tool and force it with tool_choice to get reliably structured data."],
+    ["Built-in tools","Anthropic-provided tools such as text editor, web search and code execution reduce what you must implement."]
+   ]},
+   {h:"Retrieval augmented generation (RAG)", items:[
+    ["Why RAG","Documents are too large for every prompt; retrieve only relevant chunks to cut cost and improve focus."],
+    ["Chunking","Split text by size (with overlap), by structure (headings/sections) or semantically. Chunk quality drives retrieval quality."],
+    ["Embeddings","Vectors that capture meaning; nearest vectors (e.g. cosine similarity) are semantically similar. Needs a separate embedding model."],
+    ["BM25","Keyword-based lexical ranking; strong on exact terms, names and IDs."],
+    ["Hybrid search","Combine semantic and BM25 results and merge the rankings (e.g. reciprocal rank fusion)."],
+    ["Reranking","Have a model reorder retrieved candidates by relevance to the query before sending to Claude."],
+    ["Contextual retrieval","Prepend a short generated context to each chunk before indexing so isolated chunks keep their meaning."],
+    ["Multi-index","Several indexes (e.g. vector plus BM25) queried together and merged."]
+   ]},
+   {h:"Advanced features", items:[
+    ["Prompt caching","Mark a stable prefix with <code>cache_control</code>; later requests reuse it cheaper and faster. Prefix must be identical; short TTL; minimum size applies."],
+    ["Extended thinking","Give Claude a <code>budget_tokens</code> thinking budget for hard reasoning; thinking blocks are returned. Budget must be below max_tokens."],
+    ["Citations","Ground answers in provided documents with references to the source passages."],
+    ["Images and PDFs","Send as content blocks (base64 or URL) and prompt clearly about what to look at."]
+   ]},
+   {h:"Claude Code & Computer Use", items:[
+    ["Claude Code","A terminal coding agent that reads, edits and runs code; extensible with MCP servers and custom commands."],
+    ["Computer use","Claude sees screenshots and requests mouse/keyboard actions; your code performs them in a sandbox and loops. Use isolated environments."]
+   ]},
+   {h:"Workflows and agents", items:[
+    ["Workflow","LLM calls orchestrated along predefined code paths. Predictable, testable."],
+    ["Chaining","Output of one step feeds the next; split a task into simple stages."],
+    ["Parallelization","Run independent subtasks (or the same task multiple times) at once and aggregate."],
+    ["Routing","Classify the input, then send it to a specialised prompt or handler."],
+    ["Evaluator-optimizer","One call generates, another critiques, loop until good enough."],
+    ["Agent","The model chooses tools and steps in a loop using environment feedback. Flexible but less predictable."],
+    ["Workflow vs. agent","Prefer workflows when steps are known; use agents only when the path cannot be planned in advance."],
+    ["Agent tool design","Give agents a small set of simple, general, well-described tools."],
+    ["Debugging","Log every step and inspect intermediate outputs; most failures are bad inputs to a later step."]
+   ]}
+  ]
+},
+{
+  id:"vertex", name:"Claude on Google Cloud", short:"Google Cloud", color:"var(--c-vertex)",
+  blurb:"The Claude API curriculum delivered through Vertex AI.",
+  facts:["85 lectures","8 h video","10 quizzes","Python"],
+  big:"Same Claude concepts as the API course. What changes is access: Google Cloud account, Vertex AI, and Anthropic SDK authentication.",
+  tips:["Know the objectives: set up and authenticate via Vertex AI with the Anthropic SDK.","Pick models by intelligence, speed and cost.","Everything else (tools, RAG, MCP, agents) transfers from the API course."],
+  sections:[
+   {h:"Platform specifics", items:[
+    ["Prerequisites","Python, JSON handling, and a Google Cloud account with Vertex AI access."],
+    ["Authentication","Use the Anthropic SDK's Vertex client with your Google Cloud credentials, project and region."],
+    ["Model selection","Choose by trade-off among intelligence, speed and cost; verify the model is enabled for your project and region."],
+    ["Same API surface","Messages, streaming, system prompts, tool use and structured output work the same conceptually as the direct API."]
+   ]},
+   {h:"Skills covered", items:[
+    ["Prompt evaluation","Write prompts and evaluate them with objective scoring metrics."],
+    ["Tool calling","Web search, file operations and custom functions."],
+    ["RAG pipelines","Text chunking, embeddings and hybrid search."],
+    ["Advanced features","Extended thinking, citations, prompt caching."],
+    ["MCP","Connect Claude to external services using Model Context Protocol."],
+    ["Workflows vs. agents","Workflows for known task sequences; agents for flexible problem solving (parallelization, chaining, routing, debugging)."]
+   ]}
+  ]
+},
+{
+  id:"bedrock", name:"Claude with Amazon Bedrock", short:"Amazon Bedrock", color:"var(--c-bedrock)",
+  blurb:"The Claude API curriculum delivered through AWS Bedrock with boto3.",
+  facts:["85 lectures","8 h video","10 quizzes","Python"],
+  big:"Same Claude concepts again; the platform piece is AWS: account with Bedrock access, boto3 requests, and Bedrock model access.",
+  tips:["Know the objective: make requests to Claude via Bedrock using boto3.","Extra coverage: image processing, computer use for UI testing, Claude Code for parallelized workflows."],
+  sections:[
+   {h:"Platform specifics", items:[
+    ["Prerequisites","Python, JSON handling, and an AWS account with Bedrock access."],
+    ["Requests","Call Claude models through the Bedrock API using <code>boto3</code>, with AWS credentials and region."],
+    ["Same concepts","Multi-turn conversation, streaming, structured extraction, tool use and system prompts mirror the direct API."]
+   ]},
+   {h:"Skills covered", items:[
+    ["Prompt evaluation","Automated testing pipelines with objective scoring."],
+    ["Tools","Create custom tools and handle multi-step tool execution workflows."],
+    ["RAG","Chunking, embeddings and hybrid search (semantic plus BM25)."],
+    ["MCP","Connect Claude to external services with MCP servers."],
+    ["Claude Code","Automated development workflows and parallelized task execution."],
+    ["Optimization features","Prompt caching, extended thinking and image processing."],
+    ["Computer use","Automated testing and UI interaction."]
+   ]}
+  ]
+},
+{
+  id:"mcp", name:"Introduction to Model Context Protocol", short:"MCP", color:"var(--c-mcp)",
+  blurb:"Build MCP servers and clients in Python; tools, resources, prompts.",
+  facts:["16 lectures","1 h video","1 quiz","Python"],
+  big:"MCP standardises how Claude connects to external tools and data so you do not hand-write tool schemas and glue code for every service.",
+  tips:["Know the three primitives and who controls each.","Know how to test a server (MCP Inspector).","Know client responsibilities: sessions, listing and calling tools, reading resources, cleanup."],
+  sections:[
+   {h:"Concepts", items:[
+    ["What MCP is","An open protocol for connecting AI applications to external tools, data and workflows through a standard interface."],
+    ["Architecture","Client-server: your application hosts an MCP client that talks to one or more MCP servers."],
+    ["MCP server","Exposes tools, resources and prompts. Wraps a service so any MCP client can use it."],
+    ["MCP client","Connects to a server, lists what it offers, calls tools, reads resources and fetches prompts for the app."],
+    ["Why use it","Reuse existing servers and avoid writing and maintaining tool schemas and integration code per service."],
+    ["Transports","How client and server communicate: local process over stdio, or remote over HTTP."]
+   ]},
+   {h:"The three primitives (control pattern)", items:[
+    ["Tools","<b>Model-controlled.</b> Actions Claude decides to call (e.g. edit a document, query a database)."],
+    ["Resources","<b>Application-controlled.</b> Data the app reads directly and can inject into prompts; direct URIs or templated URIs with parameters."],
+    ["Prompts","<b>User-controlled.</b> Predefined, well-tuned instruction templates a user can invoke (e.g. slash-command style workflows)."],
+    ["Choosing","Need the model to act? Tool. App needs data? Resource. User wants a canned workflow? Prompt."]
+   ]},
+   {h:"Building servers", items:[
+    ["Python SDK","Define tools with decorators; the SDK builds the schema from type hints and docstrings."],
+    ["Defining a tool","Function plus type-annotated parameters and a clear docstring; return a result Claude can use."],
+    ["Defining resources","Register a resource by URI; return its contents. Use templated URIs for parameterised lookups."],
+    ["Defining prompts","Return reusable message templates, optionally with arguments."],
+    ["MCP Inspector","Built-in web tool to run your server and test tools, resources and prompts interactively before connecting a client."]
+   ]},
+   {h:"Building clients", items:[
+    ["Client session","Create a session over the chosen transport, initialize it, then use it for all calls."],
+    ["Core client calls","List tools, call a tool, list/read resources, list/get prompts."],
+    ["App flow","User question, app sends tools from the server to Claude, Claude requests a tool, client calls it on the server, result goes back to Claude."],
+    ["Async and cleanup","Clients are async; always release connections and resources properly (context managers/exit stacks)."]
+   ]}
+  ]
+},
+{
+  id:"cc", name:"Claude Code in Action", short:"Claude Code", color:"var(--c-cc)",
+  blurb:"Steer, configure, automate and verify long, hands-off Claude Code sessions.",
+  facts:["9 lectures","4 sections","Prereq: uses Claude Code already"],
+  big:"The course arc: Steer the work, Configure Claude, Automate repeat work, Verify and share. Rules that must never be skipped belong in hooks, not prompts.",
+  tips:["Match each rule to the right surface: CLAUDE.md (guidance), skills (procedures), hooks (guarantees).","Know permission modes and when to use each.","Verification effort scales inversely with how closely you watched."],
+  sections:[
+   {h:"Steer the work", items:[
+    ["Plan mode","Have Claude explore and propose a plan before editing. Use it to scope work and catch wrong approaches early."],
+    ["Directed compaction","When context is compacted, tell Claude what the summary must keep so key facts survive."],
+    ["Rewind menu","Roll the conversation (and changes) back to an earlier point to course-correct instead of arguing forward."],
+    ["Goal and loop","Autonomous runs: give a clear goal and let Claude iterate until it is met, versus hands-on step-by-step steering."],
+    ["Parallel agents with worktrees","Git worktrees give each agent its own checkout so parallel sessions do not clobber each other."]
+   ]},
+   {h:"Configure Claude", items:[
+    ["Three instruction surfaces","Put each rule where it fits: CLAUDE.md for guidance, skills for repeatable procedures, hooks for enforced rules."],
+    ["Lean CLAUDE.md","Short, specific, relevant instructions are followed; long bloated files get ignored. Project-level file is shared via version control."],
+    ["Skills","Package a repeated procedure (instructions plus supporting files) that Claude loads when relevant."],
+    ["Verification skill","A first skill to build: it checks Claude's work (tests, lint, run the app) before reporting done."],
+    ["Permission modes","Pick per job, from approving each action (hands-on) through auto-accepting edits and plan-only to unattended pipelines."],
+    ["Hooks","Scripts run at lifecycle events (e.g. before/after a tool use, on stop). Deterministic, unskippable."],
+    ["Hook control","A hook returns permission-decision JSON (allow, deny, ask) or uses exit codes (a blocking exit code stops the action and feeds the message back to Claude)."]
+   ]},
+   {h:"Automate repeat work", items:[
+    ["Routines","Scheduled prompts that run on Anthropic infrastructure for recurring tasks."],
+    ["Headless mode","Run Claude non-interactively from your own pipeline with structured (JSON) output."],
+    ["Pull request integration","Managed code review and the GitHub action bring Claude into PRs."]
+   ]},
+   {h:"Verify and share", items:[
+    ["Proportional verification","The less you watched a run, the more independent verification you need afterwards."],
+    ["Test-gated hooks","A stop hook that runs real tests can refuse to let Claude finish until they pass."],
+    ["Plugins","Package a trusted setup (skills, hooks, commands) so the whole team can install it."]
+   ]}
+  ]
+}
+];
+
+const DOMAINS = [
+ {n:"Agentic Architecture & Orchestration", p:27, d:"Agent loops, stop_reason handling, orchestrator and subagents with isolated context, parallel vs sequential, hooks, sessions, escalation.", c:["api","cc","mcp"]},
+ {n:"Claude Code Configuration & Workflows", p:20, d:"CLAUDE.md hierarchy, skills, plan mode, permissions, hooks, headless CI, worktrees.", c:["cc"]},
+ {n:"Prompt Engineering & Structured Output", p:20, d:"Explicit criteria, few-shot examples, schema/tool-based output, validation-retry, batch vs sync, multi-pass review.", c:["api","fluency"]},
+ {n:"Tool Design & MCP Integration", p:18, d:"Tool descriptions and schemas, tool_choice, error responses, MCP primitives and configuration.", c:["api","mcp"]},
+ {n:"Context Management & Reliability", p:15, d:"Preserving key facts, trimming tool output, escalation, error handling, provenance, large codebases.", c:["api","cc"]}
+];
+
+const QUIZ = [
+ {c:"api",q:"Your loop receives stop_reason = \"tool_use\". What do you do next?",a:["Treat the task as finished","Run the requested tool, append a tool_result in a user message, call the model again","Parse the text for the word 'done'","Start a new conversation"],i:1,w:"tool_use means Claude wants tool output first; only end_turn means finished."},
+ {c:"api",q:"The Claude API is stateless. What follows?",a:["Claude remembers earlier calls automatically","You must resend the conversation history on each request","System prompts persist forever","Only the last message is needed"],i:1,w:"Append the assistant reply to your list and resend the full history."},
+ {c:"api",q:"Where does the system prompt go?",a:["First user message","The separate system parameter","Inside tool_result","In stop_sequences"],i:1,w:"System is its own request parameter, not a message."},
+ {c:"api",q:"max_tokens is best described as:",a:["The target output length","A hard cap on output length","Input limit","Context window size"],i:1,w:"It is only an upper bound; hitting it yields stop_reason max_tokens."},
+ {c:"api",q:"Which pair produces clean JSON with no trailing commentary (non-tool approach)?",a:["High temperature + examples","Prefill + stop sequence","Longer max_tokens","Streaming"],i:1,w:"Prefill starts the object; the stop sequence ends it."},
+ {c:"api",q:"A tool_result must reference which field of the tool_use block?",a:["name","id (tool_use_id)","input","type"],i:1,w:"Results are matched to calls by tool_use_id."},
+ {c:"api",q:"Claude returns three tool_use blocks in one response. How do you reply?",a:["Only answer the first","Send three separate user messages","Return all results together in one user message","Ignore them"],i:2,w:"All tool_results go back together in a single user message."},
+ {c:"api",q:"Which tool_choice forces Claude to call some tool but lets it pick which?",a:["auto","any","tool","none"],i:1,w:"any = must call a tool; tool = a specific one."},
+ {c:"api",q:"How should a tool failure be reported to Claude?",a:["Throw and crash","tool_result with is_error true and a clear message","Silently skip","Restart the conversation"],i:1,w:"A descriptive error lets Claude recover or retry."},
+ {c:"api",q:"What is the first step of a systematic prompt evaluation?",a:["Ship it","Create a test dataset and grader, then run and score","Increase temperature","Add more examples without testing"],i:1,w:"Dataset, run, grade, score, iterate."},
+ {c:"api",q:"Which grader is cheapest and most reliable for checking valid JSON?",a:["Human review","Model-based grader","Code-based grader","Another prompt"],i:2,w:"Deterministic checks belong in code."},
+ {c:"api",q:"Hybrid search in RAG combines:",a:["Two embedding models only","Semantic (embedding) search and BM25 keyword search","Reranking and caching","Streaming and batching"],i:1,w:"Merge semantic and lexical rankings."},
+ {c:"api",q:"What does contextual retrieval add?",a:["Larger chunks","A short generated context prepended to each chunk before indexing","More tools","Higher temperature"],i:1,w:"It keeps isolated chunks meaningful."},
+ {c:"api",q:"When should you prefer a workflow over an agent?",a:["When the path cannot be predicted","When the steps are known in advance","Never","When latency does not matter"],i:1,w:"Fixed steps: workflows are more predictable and testable."},
+ {c:"api",q:"Prompt caching requires:",a:["Different prefixes each call","A stable, identical prefix marked with cache_control","Streaming","Extended thinking"],i:1,w:"Cache hits depend on an identical prefix."},
+ {c:"api",q:"Extended thinking budget_tokens must be:",a:["Larger than max_tokens","Below max_tokens","Zero","Unrelated to max_tokens"],i:1,w:"Thinking tokens count within the output limit."},
+ {c:"mcp",q:"Which MCP primitive is model-controlled?",a:["Resources","Prompts","Tools","Roots"],i:2,w:"Tools: the model decides when to call them."},
+ {c:"mcp",q:"Which primitive is user-controlled templates?",a:["Tools","Resources","Prompts","Sampling"],i:2,w:"Prompts are predefined workflows a user invokes."},
+ {c:"mcp",q:"Which primitive is application-controlled data?",a:["Tools","Resources","Prompts","Hooks"],i:1,w:"The app reads resources and decides how to use them."},
+ {c:"mcp",q:"What do you use to test an MCP server interactively?",a:["Postman only","MCP Inspector","Claude Code hooks","Prompt caching"],i:1,w:"The Inspector lets you call tools, read resources and fetch prompts."},
+ {c:"mcp",q:"Main benefit of MCP?",a:["Faster models","Standard connection to services without hand-writing schemas and glue code per service","Free API usage","Replaces prompts"],i:1,w:"Reuse servers instead of re-implementing integrations."},
+ {c:"cc",q:"A rule must NEVER be skipped (e.g. block edits to production config). Where does it belong?",a:["CLAUDE.md","A hook","A skill","The chat"],i:1,w:"Hooks are deterministic; prompts and CLAUDE.md are guidance."},
+ {c:"cc",q:"Why keep CLAUDE.md lean?",a:["Files over 10 lines break","Long files get ignored; short specific rules are followed","It is billed per line","Skills replace it"],i:1,w:"Bloat dilutes the instructions Claude actually follows."},
+ {c:"cc",q:"Safest way to run several agents in parallel on one repo?",a:["Same working directory","Git worktrees","One huge session","Disable git"],i:1,w:"Each agent gets an isolated checkout."},
+ {c:"cc",q:"What is plan mode for?",a:["Deleting files","Exploring and proposing a plan before making edits","Running tests only","Skipping permissions"],i:1,w:"Scope the work and catch wrong approaches early."},
+ {c:"cc",q:"Which verification approach fits a long unsupervised run?",a:["None; trust it","Independent verification proportional to how little you watched (e.g. test-gated hooks)","Only read the summary","Re-run without checks"],i:1,w:"Less supervision means more verification."},
+ {c:"cc",q:"Running Claude inside your own CI pipeline with machine-readable results uses:",a:["Plan mode","Headless mode with structured output","Rewind","Worktrees only"],i:1,w:"Headless runs are non-interactive and can emit JSON."},
+ {c:"fluency",q:"Which D covers disclosing AI's role to people who need to know?",a:["Delegation","Description","Discernment","Diligence"],i:3,w:"Transparency diligence."},
+ {c:"fluency",q:"Deciding which parts of a project AI should handle is:",a:["Delegation","Description","Discernment","Diligence"],i:0,w:"Problem awareness, platform awareness, task delegation."},
+ {c:"fluency",q:"Spotting a logic error in the AI's reasoning is which skill?",a:["Product description","Process discernment","Creation diligence","Platform awareness"],i:1,w:"Process discernment evaluates how the AI got there."},
+ {c:"fluency",q:"You build an AI configured to act independently on your behalf. Interaction mode?",a:["Automation","Augmentation","Agency","Delegation"],i:2,w:"Agency: AI acts independently within behavior you set."},
+ {c:"c101",q:"You want related chats to share files and instructions. Use:",a:["Artifacts","Projects","Research","Enterprise search"],i:1,w:"Projects keep persistent context together."},
+ {c:"vertex",q:"What changes most when using Claude on Google Cloud vs. the direct API?",a:["The Claude concepts","Account, access and authentication via Vertex AI","The meaning of stop_reason","Tool schemas"],i:1,w:"Concepts transfer; setup and auth differ."},
+ {c:"bedrock",q:"Which library does the Bedrock course use to make requests?",a:["gcloud","boto3","curl only","httpx only"],i:1,w:"AWS SDK for Python: boto3."}
+];
+
+/* ------------------------------ STATE ------------------------------ */
+const KEY = "cca-prep-hub-v1";
+const store = Object.assign({known:{}, theme:null, recall:false}, JSON.parse(localStorage.getItem(KEY) || "{}"));
+const save = () => localStorage.setItem(KEY, JSON.stringify(store));
+const $ = s => document.querySelector(s);
+const esc = s => s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+
+const ALL = [];
+COURSES.forEach(c => c.sections.forEach((s, si) => s.items.forEach((it, ii) => {
+  ALL.push({id:`${c.id}:${si}:${ii}`, course:c, section:s.h, t:it[0], d:it[1]});
+})));
+const courseItems = c => ALL.filter(x => x.course.id === c.id);
+const progress = c => { const it = courseItems(c); return {k:it.filter(x => store.known[x.id]).length, n:it.length}; };
+
+/* ------------------------------ THEME / MODES ------------------------------ */
+function applyTheme() {
+  const t = store.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  document.documentElement.dataset.theme = t;
+  $("#themeBtn").textContent = t === "dark" ? "Light" : "Dark";
+}
+function applyRecall() {
+  document.body.classList.toggle("recall", store.recall);
+  $("#recallBtn").classList.toggle("on", store.recall);
+}
+$("#themeBtn").onclick = () => { store.theme = document.documentElement.dataset.theme === "dark" ? "light" : "dark"; save(); applyTheme(); };
+$("#recallBtn").onclick = () => { store.recall = !store.recall; save(); applyRecall(); };
+$("#menuBtn").onclick = () => document.body.classList.toggle("menu");
+
+/* ------------------------------ ROUTING ------------------------------ */
+const NAV = [
+  {id:"home", label:"Exam map", group:"Start"},
+  ...COURSES.map(c => ({id:"course/" + c.id, label:c.short, group:"Courses", c})),
+  {id:"cheat", label:"Cheat sheet", group:"Review"},
+  {id:"flash", label:"Flashcards", group:"Review"},
+  {id:"quiz", label:"Practice quiz", group:"Review"}
+];
+function route() { return location.hash.replace(/^#\/?/, "") || "home"; }
+function go(r) { location.hash = "/" + r; }
+window.addEventListener("hashchange", () => { $("#q").value = ""; document.body.classList.remove("menu"); render(); window.scrollTo(0, 0); });
+
+function renderSide() {
+  const r = route();
+  let h = "", g = "";
+  NAV.forEach(n => {
+    if (n.group !== g) { g = n.group; h += `<h4>${g}</h4>`; }
+    const pr = n.c ? progress(n.c) : null;
+    h += `<button class="nav ${r === n.id ? "active" : ""}" data-go="${n.id}">` +
+         (n.c ? `<span class="dot" style="--c:${n.c.color}"></span>` : "") +
+         `${n.label}${pr ? `<span class="pc">${pr.k}/${pr.n}</span>` : ""}</button>`;
+  });
+  const k = ALL.filter(x => store.known[x.id]).length;
+  h += `<div class="overall"><div class="meter"><i style="width:${(k / ALL.length * 100).toFixed(1)}%"></i></div><small>${k} / ${ALL.length} points mastered</small></div>`;
+  $("#side").innerHTML = h;
+}
+$("#side").addEventListener("click", e => { const b = e.target.closest("[data-go]"); if (b) go(b.dataset.go); });
+
+function render() {
+  renderSide();
+  const r = route();
+  const m = $("#main");
+  if (r === "home") m.innerHTML = viewHome();
+  else if (r.startsWith("course/")) m.innerHTML = viewCourse(r.split("/")[1]);
+  else if (r === "cheat") m.innerHTML = viewCheat();
+  else if (r === "flash") { m.innerHTML = viewFlash(); initFlash(); }
+  else if (r === "quiz") { m.innerHTML = viewQuizStart(); }
+  else m.innerHTML = viewHome();
+}
+
+/* ------------------------------ VIEWS ------------------------------ */
+function viewHome() {
+  const total = ALL.length, k = ALL.filter(x => store.known[x.id]).length;
+  return `
+  <div class="head"><h1>Exam Prep Hub</h1>
+  <p>Condensed notes from all seven prep courses. Read a course, switch on <b>Recall mode</b> to test yourself, tick points you have mastered, then drill with flashcards and the quiz.</p></div>
+  <div class="callout"><b class="t">How to use</b><ul>
+    <li><b>Learn:</b> open a course from the sidebar.</li>
+    <li><b>Recall:</b> toggle Recall mode (top bar) to blur answers; click any item to reveal.</li>
+    <li><b>Drill:</b> Flashcards and Practice quiz can be filtered per course.</li>
+    <li><b>Find:</b> press <code>/</code> to search every note.</li></ul></div>
+  <h2 class="ch">Exam domains</h2>
+  <div class="note">Domain names and weights are from publicly shared exam outlines and may change. Confirm against the official exam guide.</div>
+  <div class="dom">${DOMAINS.map(d => `
+    <div class="row"><div><b>${d.n}</b><small>${d.d}</small><div style="margin-top:.4rem">${d.c.map(id => { const c = COURSES.find(x => x.id === id); return `<a href="#/course/${id}" class="badge" style="text-decoration:none">${c.short}</a>`; }).join(" ")}</div></div><div class="pct">${d.p}%</div><div class="meter"><i style="--w:${d.p * 3}%"></i></div></div>`).join("")}</div>
+  <h2 class="ch">Courses (${k}/${total} points mastered)</h2>
+  <div class="grid">${COURSES.map(c => { const p = progress(c); return `
+    <button class="card" style="--c:${c.color}" data-go="course/${c.id}"><h3>${c.name}</h3><p>${c.blurb}</p>
+    <div class="meter"><i style="width:${p.k / p.n * 100}%"></i></div><small style="color:var(--muted)">${p.k} / ${p.n} mastered</small></button>`; }).join("")}</div>`;
+}
+$("#main").addEventListener("click", e => { const b = e.target.closest("button.card[data-go]"); if (b) go(b.dataset.go); });
+
+function itemHTML(x, hl) {
+  const rx = hl ? new RegExp("(<[^>]+>)|(" + hl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi") : null;
+  const mark = s => rx ? s.replace(rx, (m, tag, hit) => tag ? tag : `<mark>${hit}</mark>`) : s;
+  return `<div class="item ${store.known[x.id] ? "done" : ""}" data-id="${x.id}" style="--c:${x.course.color}">
+    <input type="checkbox" ${store.known[x.id] ? "checked" : ""} aria-label="Mastered">
+    <div>${hl ? `<div class="src"><span class="dot" style="--c:${x.course.color}"></span>${x.course.short} / ${x.section}</div>` : ""}
+    <div class="term">${mark(x.t)}</div><div class="def">${hl ? mark(x.d) : x.d}</div></div></div>`;
+}
+
+function viewCourse(id) {
+  const c = COURSES.find(x => x.id === id) || COURSES[0];
+  const p = progress(c);
+  let h = `<div class="head" style="--c:${c.color}"><h1>${c.name}</h1><p>${c.blurb}</p>
+    <div class="facts">${c.facts.map(f => `<span class="badge">${f}</span>`).join("")}<span class="badge" id="pbadge">${p.k}/${p.n} mastered</span></div></div>
+    <div class="callout" style="--c:${c.color}"><b class="t">Big idea</b>${c.big}</div>
+    <div class="callout" style="--c:${c.color}"><b class="t">Exam focus</b><ul>${c.tips.map(t => `<li>${t}</li>`).join("")}</ul></div>`;
+  let idx = 0;
+  c.sections.forEach((s, si) => {
+    h += `<section class="sec" style="--c:${c.color}"><h3>${s.h}</h3><div class="items">`;
+    s.items.forEach((_, ii) => { h += itemHTML(ALL.find(x => x.id === `${c.id}:${si}:${ii}`)); });
+    h += `</div></section>`;
+  });
+  h += `<div class="fc-actions"><button class="btn primary" data-fc="${c.id}">Flashcards for this course</button><button class="btn" data-qz="${c.id}">Quiz on this course</button></div>`;
+  return h;
+}
+
+document.addEventListener("click", e => {
+  const it = e.target.closest(".item");
+  if (it && it.dataset.id) {
+    if (e.target.matches("input[type=checkbox]")) {
+      store.known[it.dataset.id] = e.target.checked; save();
+      it.classList.toggle("done", e.target.checked);
+      renderSide(); updateBadge();
+      return;
+    }
+    if (store.recall) it.classList.toggle("show");
+  }
+  const f = e.target.closest("[data-fc]"); if (f) { flashCourse = f.dataset.fc; go("flash"); }
+  const q = e.target.closest("[data-qz]"); if (q) { quizCourse = q.dataset.qz; go("quiz"); }
+});
+function updateBadge() {
+  const r = route(); if (!r.startsWith("course/")) return;
+  const c = COURSES.find(x => x.id === r.split("/")[1]); const p = progress(c);
+  const b = $("#pbadge"); if (b) b.textContent = `${p.k}/${p.n} mastered`;
+}
+
+/* ---- cheat sheet ---- */
+function viewCheat() {
+  return `<div class="head"><h1>Cheat sheet</h1><p>Side-by-side comparisons that exam scenarios love.</p></div>
+  <h2 class="ch">stop_reason</h2><div class="tw"><table><tr><th>Value</th><th>Meaning</th><th>Do</th></tr>
+   <tr><td><code>end_turn</code></td><td>Claude finished</td><td>Exit the loop</td></tr>
+   <tr><td><code>tool_use</code></td><td>Claude wants a tool run</td><td>Execute, append tool_result, call again</td></tr>
+   <tr><td><code>max_tokens</code></td><td>Output cut at the cap</td><td>Raise limit or continue</td></tr>
+   <tr><td><code>stop_sequence</code></td><td>Hit your stop string</td><td>Use the partial output</td></tr></table></div>
+  <h2 class="ch">tool_choice</h2><div class="tw"><table><tr><th>Setting</th><th>Behavior</th></tr>
+   <tr><td><code>auto</code></td><td>Claude decides whether to call a tool</td></tr>
+   <tr><td><code>any</code></td><td>Must call some tool</td></tr>
+   <tr><td><code>tool</code></td><td>Must call the named tool (use for structured extraction)</td></tr></table></div>
+  <h2 class="ch">MCP primitives</h2><div class="tw"><table><tr><th>Primitive</th><th>Controlled by</th><th>Use for</th></tr>
+   <tr><td>Tools</td><td>Model</td><td>Actions Claude decides to take</td></tr>
+   <tr><td>Resources</td><td>Application</td><td>Data the app reads/injects</td></tr>
+   <tr><td>Prompts</td><td>User</td><td>Predefined workflow templates</td></tr></table></div>
+  <h2 class="ch">Workflow vs. agent</h2><div class="tw"><table><tr><th></th><th>Workflow</th><th>Agent</th></tr>
+   <tr><td>Control flow</td><td>Fixed in your code</td><td>Chosen by the model</td></tr>
+   <tr><td>Predictability</td><td>High</td><td>Lower</td></tr>
+   <tr><td>Use when</td><td>Steps are known</td><td>Path cannot be planned</td></tr>
+   <tr><td>Patterns</td><td>Chaining, routing, parallelization, evaluator-optimizer</td><td>Tool loop with environment feedback</td></tr></table></div>
+  <h2 class="ch">Where to put a rule in Claude Code</h2><div class="tw"><table><tr><th>Surface</th><th>Nature</th><th>Use for</th></tr>
+   <tr><td>CLAUDE.md</td><td>Guidance (probabilistic)</td><td>Conventions, context, how we work</td></tr>
+   <tr><td>Skill</td><td>On-demand procedure</td><td>Repeatable multi-step tasks, verification</td></tr>
+   <tr><td>Hook</td><td>Deterministic code</td><td>Must-never-skip rules, test gates, blocking actions</td></tr></table></div>
+  <h2 class="ch">Evaluation graders</h2><div class="tw"><table><tr><th>Grader</th><th>Best for</th></tr>
+   <tr><td>Code-based</td><td>Format, validity, exact checks</td></tr>
+   <tr><td>Model-based</td><td>Quality against a rubric</td></tr>
+   <tr><td>Human</td><td>High-stakes or ambiguous judgments</td></tr></table></div>
+  <h2 class="ch">RAG pipeline</h2><div class="tw"><table><tr><th>Step</th><th>Idea</th></tr>
+   <tr><td>1 Chunk</td><td>Size / structure / semantic splitting</td></tr>
+   <tr><td>2 Index</td><td>Embeddings plus BM25 (optionally contextual chunks)</td></tr>
+   <tr><td>3 Retrieve</td><td>Hybrid search merges both rankings</td></tr>
+   <tr><td>4 Rerank</td><td>Reorder candidates by relevance</td></tr>
+   <tr><td>5 Generate</td><td>Pass top chunks to Claude</td></tr></table></div>
+  <h2 class="ch">Platforms</h2><div class="tw"><table><tr><th>Platform</th><th>Needs</th><th>Client</th></tr>
+   <tr><td>Direct API</td><td>Anthropic API key</td><td>Anthropic SDK</td></tr>
+   <tr><td>Google Cloud</td><td>GCP account, Vertex AI access</td><td>Anthropic SDK (Vertex)</td></tr>
+   <tr><td>Amazon Bedrock</td><td>AWS account, Bedrock access</td><td>boto3 (Bedrock)</td></tr></table></div>
+  <h2 class="ch">4D quick map</h2><div class="tw"><table><tr><th>D</th><th>Question</th><th>Sub-skills</th></tr>
+   <tr><td>Delegation</td><td>Should AI do this?</td><td>Problem, platform, task</td></tr>
+   <tr><td>Description</td><td>Did I say it well?</td><td>Product, process, performance</td></tr>
+   <tr><td>Discernment</td><td>Is it good?</td><td>Product, process, performance</td></tr>
+   <tr><td>Diligence</td><td>Am I responsible?</td><td>Creation, transparency, deployment</td></tr></table></div>`;
+}
+
+/* ---- flashcards ---- */
+let flashCourse = "all", fcDeck = [], fcI = 0, fcOnlyNew = false;
+function viewFlash() {
+  return `<div class="head"><h1>Flashcards</h1><p>Read the term, say the answer aloud, then flip. Mark what you know.</p></div>
+  <div class="fc-bar">
+    <select id="fcCourse"><option value="all">All courses</option>${COURSES.map(c => `<option value="${c.id}" ${flashCourse === c.id ? "selected" : ""}>${c.short}</option>`).join("")}</select>
+    <label style="display:flex;gap:.4rem;align-items:center"><input type="checkbox" id="fcNew" ${fcOnlyNew ? "checked" : ""}> Only not-yet-mastered</label>
+    <button class="btn" id="fcShuf">Shuffle</button>
+    <span class="qprog" id="fcCount"></span>
+  </div>
+  <div class="stage"><div class="flip" id="fcCard"></div></div>
+  <div class="fc-actions"><button class="btn" id="fcPrev">Prev</button><button class="btn again" id="fcAgain">Still learning</button><button class="btn ok" id="fcKnow">Got it</button><button class="btn" id="fcNext">Next</button></div>
+  <div class="hint">Keys: Space = flip, Left/Right = navigate, K = got it, A = still learning</div>`;
+}
+function buildDeck(shuffle) {
+  fcDeck = ALL.filter(x => (flashCourse === "all" || x.course.id === flashCourse) && (!fcOnlyNew || !store.known[x.id]));
+  if (shuffle) for (let i = fcDeck.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [fcDeck[i], fcDeck[j]] = [fcDeck[j], fcDeck[i]]; }
+  fcI = 0;
+}
+function drawCard() {
+  const el = $("#fcCard"); if (!el) return;
+  el.classList.remove("on");
+  if (!fcDeck.length) { el.innerHTML = `<div class="face"><div class="big">Nothing here. Everything is mastered, or pick another course.</div></div>`; $("#fcCount").textContent = "0 cards"; return; }
+  const x = fcDeck[fcI];
+  el.style.setProperty("--c", x.course.color);
+  el.innerHTML = `<div class="face"><div class="lab">${x.course.short} / ${x.section}</div><div class="big">${x.t}</div><div class="hint">click to flip</div></div>
+    <div class="face back"><div class="lab">Answer</div><div class="txt">${x.d}</div></div>`;
+  $("#fcCount").textContent = `Card ${fcI + 1} of ${fcDeck.length}` + (store.known[x.id] ? " (mastered)" : "");
+}
+function initFlash() {
+  buildDeck(false); drawCard();
+  $("#fcCourse").onchange = e => { flashCourse = e.target.value; buildDeck(false); drawCard(); };
+  $("#fcNew").onchange = e => { fcOnlyNew = e.target.checked; buildDeck(false); drawCard(); };
+  $("#fcShuf").onclick = () => { buildDeck(true); drawCard(); };
+  $("#fcCard").onclick = () => $("#fcCard").classList.toggle("on");
+  $("#fcNext").onclick = fcNext; $("#fcPrev").onclick = () => { if (fcDeck.length) { fcI = (fcI - 1 + fcDeck.length) % fcDeck.length; drawCard(); } };
+  $("#fcKnow").onclick = () => fcMark(true); $("#fcAgain").onclick = () => fcMark(false);
+}
+function fcNext() { if (fcDeck.length) { fcI = (fcI + 1) % fcDeck.length; drawCard(); } }
+function fcMark(v) { if (!fcDeck.length) return; store.known[fcDeck[fcI].id] = v; save(); renderSide(); fcNext(); }
+
+/* ---- quiz ---- */
+let quizCourse = "all", Q = null;
+function viewQuizStart() {
+  Q = null;
+  return `<div class="head"><h1>Practice quiz</h1><p>${QUIZ.length} scenario questions with explanations. Pick a scope and start.</p></div>
+  <div class="fc-bar"><select id="qzCourse"><option value="all">All courses</option>${COURSES.map(c => `<option value="${c.id}" ${quizCourse === c.id ? "selected" : ""}>${c.short} (${QUIZ.filter(q => q.c === c.id).length})</option>`).join("")}</select>
+  <button class="btn primary" id="qzGo">Start</button></div><div id="qzArea"></div>`;
+}
+document.addEventListener("change", e => { if (e.target.id === "qzCourse") quizCourse = e.target.value; });
+document.addEventListener("click", e => {
+  if (e.target.id === "qzGo") {
+    const pool = QUIZ.filter(q => quizCourse === "all" || q.c === quizCourse);
+    if (!pool.length) { $("#qzArea").innerHTML = `<div class="note">No questions for this course yet. Try another scope.</div>`; return; }
+    Q = {list:pool.map(q => q).sort(() => Math.random() - .5), i:0, score:0, missed:[], done:false};
+    drawQ();
+  }
+});
+function drawQ() {
+  const a = $("#qzArea");
+  if (Q.i >= Q.list.length) {
+    a.innerHTML = `<div class="qbox"><div class="callout"><b class="t">Result</b><h2 style="margin:.2rem 0">${Q.score} / ${Q.list.length}</h2>
+      ${Q.missed.length ? `<p>Review these:</p><ul>${Q.missed.map(q => `<li>${q.q} <b>${q.a[q.i]}</b></li>`).join("")}</ul>` : "<p>Perfect run.</p>"}</div>
+      <button class="btn primary" id="qzGo">Try again</button></div>`;
+    return;
+  }
+  const q = Q.list[Q.i], c = COURSES.find(x => x.id === q.c);
+  a.innerHTML = `<div class="qbox"><div class="qprog">Question ${Q.i + 1} of ${Q.list.length} - ${c.short} - score ${Q.score}</div>
+    <div class="q">${esc(q.q)}</div>
+    ${q.a.map((o, i) => `<button class="opt" data-o="${i}">${esc(o)}</button>`).join("")}
+    <div id="qzWhy"></div></div>`;
+  a.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+    const i = +b.dataset.o;
+    a.querySelectorAll(".opt").forEach((x, j) => { x.disabled = true; if (j === q.i) x.classList.add("right"); });
+    if (i === q.i) Q.score++; else { b.classList.add("wrong"); Q.missed.push(q); }
+    $("#qzWhy").innerHTML = `<div class="why"><b>${i === q.i ? "Correct." : "Not quite."}</b> ${esc(q.w)}</div><div class="fc-actions"><button class="btn primary" id="qzNext">${Q.i + 1 < Q.list.length ? "Next" : "Finish"}</button></div>`;
+    $("#qzNext").onclick = () => { Q.i++; drawQ(); };
+  });
+}
+
+/* ---- search ---- */
+$("#q").addEventListener("input", e => {
+  const v = e.target.value.trim();
+  if (v.length < 2) { render(); return; }
+  const rx = v.toLowerCase();
+  const hits = ALL.filter(x => (x.t + " " + x.d.replace(/<[^>]+>/g, "") + " " + x.course.name).toLowerCase().includes(rx));
+  $("#main").innerHTML = `<div class="head"><h1>Search</h1><p>${hits.length} result${hits.length === 1 ? "" : "s"} for "${esc(v)}"</p></div>
+    <div class="items">${hits.map(x => itemHTML(x, esc(v))).join("") || `<div class="note">Nothing found.</div>`}</div>`;
+});
+
+/* ---- keyboard ---- */
+document.addEventListener("keydown", e => {
+  const typing = /input|select|textarea/i.test(document.activeElement.tagName);
+  if (e.key === "/" && !typing) { e.preventDefault(); $("#q").focus(); return; }
+  if (typing || route() !== "flash") return;
+  if (e.key === " ") { e.preventDefault(); $("#fcCard").classList.toggle("on"); }
+  else if (e.key === "ArrowRight") fcNext();
+  else if (e.key === "ArrowLeft") $("#fcPrev").click();
+  else if (e.key.toLowerCase() === "k") fcMark(true);
+  else if (e.key.toLowerCase() === "a") fcMark(false);
+});
+
+/* ---- init ---- */
+applyTheme(); applyRecall(); render();
+</script>
+</body>
+</html>
